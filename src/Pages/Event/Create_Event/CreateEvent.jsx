@@ -1,8 +1,10 @@
+import axios from "axios"
 import { useState } from "react"
 // import CalendarView from "../../../Components/React_Calender/CalendarView"
 import Datepicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { FaCalendarAlt } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 
 
@@ -10,7 +12,8 @@ export const CreateEvent = () => {
 
  const [selectDate , setSelectedDate] = useState(null);
  const [selectEndDate , setSelectedEndDate] = useState(null);
- 
+
+ const navigate = useNavigate()
 
 
    const submitData = async (event) => {
@@ -27,6 +30,7 @@ export const CreateEvent = () => {
     const end_date = inputForm.end_date?.value;
     const image = inputForm.image?.value;
     const email = inputForm.email?.value;
+    const description = inputForm.description?.value;
 
  
 
@@ -37,31 +41,25 @@ export const CreateEvent = () => {
         start_date,
         end_date,
         image,
-        email
+        email,
+        description
 
     }
 
 console.log(EventInputData)
 
      try {
-      const response = await fetch(`http://localhost:5000/v1/event/create-event/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(EventInputData),
-         mode: 'no-cors' // Temporarily set to 'no-cors'
-      });
-     console.log("first")
-      if (response.ok) {
-        toast.success('user created successfully')
-        
-      } else {
-        console.error('Error sending event data');
-      }
+      
+      const response = await axios.post(`https://event-managment-jade.vercel.app/api/v1/event/create-event`, EventInputData)
+   
+      if (response.status === 200) {
+        toast.success('event created successfully')
+        navigate('/')
+      } 
 
     } catch (error) {
       console.error('Error:', error);
+      toast.error('event not created successfully', error?.message)
     }
 
     };

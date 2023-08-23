@@ -1,8 +1,67 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FaFileDownload, FaFileUpload, FaMapMarkerAlt } from "react-icons/fa"
+import { useNavigate, useParams } from "react-router-dom"
+import { toast } from "react-toastify";
 
 
 
 export const EventDetails = () => {
+
+  const [ singelEvent, setSingelEvent] = useState();
+
+  const {id} = useParams()
+  const navigate = useNavigate()
+
+
+  const userEmail = 'rasel1@gmil.com'; 
+
+
+ // <-----========== Get New sinel event api request ==========------>
+   useEffect(() => {
+    fetch(`https://event-managment-jade.vercel.app/api/v1/event/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setSingelEvent(data?.data); // Update the events state with fetched data
+      })
+      .catch(error => {
+        console.error("Error fetching events:", error);
+      });
+  }, [id]);
+
+
+  // <------========= Delete singel Event api request =======-------->
+
+  const eventDelete =async (singelEvent) => {
+
+    const {id, email} =singelEvent;
+
+        //checking valid Event creator email === user Email function
+    const result = email !== userEmail
+
+    if(result){
+      return toast.error('you are not this event creator. So the event will not be deleted !')
+    }else if(!result){
+     return console.log('continues..')
+    }
+
+//  try catch error handeling 
+   try {
+     
+      const response = await axios.delete(`https://event-managment-jade.vercel.app/api/v1/event/${id}`);
+      // Handle success, update state, or perform any necessary actions
+            toast.success(response.data?.message)
+             navigate('/')
+  
+    } catch (error) {
+      // Handle error, display error message, etc.
+      toast.error('Error : not deleted event  !', error);
+    } 
+
+  }
+
+
+
   return (
     <>
     
@@ -17,7 +76,7 @@ export const EventDetails = () => {
     <li className="breadcrumb-item active event-heading-text text-uppercase fw-bold text-danger">
       Event
     </li>
-    <li className="breadcrumb-item active event-heading-text text-uppercase text-info" aria-current="page">Library</li>
+    <li className="breadcrumb-item active event-heading-text text-uppercase text-info" aria-current="page">{id}</li>
   </ol>
 </nav>
      </div>
@@ -57,7 +116,7 @@ export const EventDetails = () => {
          <div className="d-block d-md-flex justify-content-end ">
           <button type="button" className="px-5 py-2 rounded-2 event-title hover-zoom text-uppercase bg-success text-white fw-bold">Edite</button>
         
-          <button type="button" className=" px-5 py-2 rounded-2 ms-md-2 my-md-0 my-2 event-title text-uppercase bg-danger text-white fw-bold">Delete</button>
+          <button onClick={() => eventDelete(singelEvent)} type="button" className=" px-5 py-2 rounded-2 ms-md-2 my-md-0 my-2 event-title text-uppercase bg-danger text-white fw-bold">Delete</button>
          
           
         </div>
