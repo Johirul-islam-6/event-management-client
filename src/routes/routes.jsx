@@ -5,7 +5,7 @@ import { EventDetails } from "../Pages/Event/Event_Details/EventDetails";
 import { Login } from "../Pages/Registration/Login";
 import { Registration } from "../Pages/Registration/Registration";
 import { ErrorPage } from "../Pages/Error/ErrorPage";
-import { CreateEvent } from "../Pages/Event/Create Event/CreateEvent";
+import { CreateEvent } from "../Pages/Event/Create_Event/CreateEvent";
 import { About } from "../Pages/About/About";
 
 

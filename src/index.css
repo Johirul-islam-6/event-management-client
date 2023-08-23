@@ -250,6 +250,49 @@
   border: unset;
 }
 
+.Create-Event-Page h1 {
+  margin-bottom: 40px;
+}
+.Create-Event-Page label {
+  color: #333;
+}
+.Create-Event-Page .btn-send {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  width: 80%;
+  margin-left: 3px;
+}
+.Create-Event-Page .help-block.with-errors {
+  color: #ff5050;
+  margin-top: 5px;
+}
+.Create-Event-Page .card {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.Create-Event-Page .calander_positioning {
+  right: 110px !important;
+  top: 10px;
+  color: #271753 !important;
+}
+
+.calendar-container {
+  margin: 20px auto;
+}
+
+.event-marker {
+  width: 8px;
+  height: 8px;
+  background-color: #ff5733;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.event-list {
+  margin-top: 20px;
+}
+
 * {
   margin: 0;
   padding: 0;
