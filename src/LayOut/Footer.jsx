@@ -1,8 +1,10 @@
 
 
 export const Footer = () => {
+
+
   return (
-    
+    <>
 <footer className="bg-dark text-center text-white">
   
   <div className="container p-4">
@@ -11,8 +13,7 @@ export const Footer = () => {
     <section className="mb-4">
       
       <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i className="fab fa-facebook-f"></i
-      ></a>
+        ><i className="fab fa-facebook-f"></i></a>
 
       
       <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
@@ -20,27 +21,22 @@ export const Footer = () => {
 
       
       <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i className="fab fa-google"></i
-      ></a>
+        ><i className="fab fa-google"></i></a>
 
       
       <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i className="fab fa-instagram"></i
-      ></a>
+        ><i className="fab fa-instagram"></i ></a>
 
       
       <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i className="fab fa-linkedin-in"></i
-      ></a>
+        ><i className="fab fa-linkedin-in"></i></a>
 
       
       <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i className="fab fa-github"></i
-      ></a>
+        ><i className="fab fa-github"></i ></a>
     </section>
     
-
-    
+   {/* ============ searching event createo =========== */}
     <section className="">
       <form action="">
         
@@ -52,8 +48,6 @@ export const Footer = () => {
             </p>
           </div>
           
-
-          
           <div className="col-md-5 col-12">
             
             <div className="form-outline form-white mb-4">
@@ -61,9 +55,6 @@ export const Footer = () => {
               <label className="form-label" >Event Creator email</label>
             </div>
           </div>
-          
-
-          
           <div className="col-auto">
             
             <button type="submit" className="btn btn-outline-light mb-4">
@@ -77,7 +68,7 @@ export const Footer = () => {
     </section>
     
 
-    
+    {/* ================== copy write policy =============== */}
     <section className="mb-4">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
@@ -91,10 +82,12 @@ export const Footer = () => {
   
   <div className="text-center p-3">
     © 2020 Copyright:
-    <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <a className="text-white" href="">MDBootstrap.com</a>
   </div>
   
 </footer>
+
+   </>
 
   )
 }

@@ -3,3 +3,42 @@
 
 @import'./LayOut/Layout';
 @import'./Pages/Home/Home';
+
+//https: //demo.ovathemes.com/eventmana/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+// ========================== created costom font class name start ===========================
+
+// All costom font className user our web application
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Fira+Sans:ital,wght@1,300&family=Hind+Madurai:wght@300;400&family=Playfair+Display&family=REM:wght@100;600&family=Raleway:wght@700&family=Work+Sans:ital,wght@0,200;0,300;0,400;0,500;1,400&display=swap');
+.realway{ //logo font
+    font-family: 'Raleway', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,100&display=swap');
+.roboto-navbar-text{ // navbar text font
+font-family: 'Roboto', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap');
+.latest-event{ // only event dev hading text
+    font-family: 'Raleway', sans-serif;
+        // font-family: 'Roboto', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap');
+.event-title{ // user all event title
+    font-family: 'Raleway', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap');
+.event-discription{ // user all event discription
+    font-family: 'Raleway', sans-serif;
+}
