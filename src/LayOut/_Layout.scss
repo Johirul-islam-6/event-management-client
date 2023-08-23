@@ -1,16 +1,204 @@
 
-// ========> Navbar Scss code start ===============>
+@import'../scss/global.variable';
+
+// ==============> web application collor ============>
+// all text color
+$small-text-color : #435469;
+$logo-text-color : #0D1D31;
+
+// bg color 
+$logo-bg-color : #ED4A43;
+$btn-bg : #ED4A43;
+$bg: #FBFBFB;
+
+
+// ========> top Navbar Scss code start ===============>
 .navbar{
 
+    // logo image and logo Text scss block
+    .navbar-brand{
 
+        .Navbar-logo {
+                width: 3.2vw ;
+                height: 6vh ;
+        
+            }
+        
+            .logo-text {
+               cursor: pointer;
+               transition: all ease-in 0.4s;
+               font-weight: 800 ;
+               color: $logo-text-color;
+                 
+                &:hover {
+                    color: #ED4A43;
+                }
+            }
+    }
+
+   
+   // profile avata image scss block
     .profile-avata {
             width: 4vw;
             height: 8vh;
+            border: 1px solid #ED4A43;
         }
 
 
 }
-// ========> Navbar Scss code end ===============>
+// ========> top Navbar Scss code end ===============>
+
+// ###
+
+// ========> middle-navbar Scss code start ============>
+ .middle-navbar{
+     background-color: $bg;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-top: 0.3rem;
+
+    .nav-item{
+
+
+        .nav-link{
+            color: $logo-text-color;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            &:hover {
+                    color: #ED4A43;
+                }
+        }
+    }
+
+
+
+ }
+
+// ========> middle-navbar Scss code end ===============>
+// ###
+// ========> last-navbar Scss code start ============>
+.last-navbar {
+    background-color: $bg;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-top: 0.3rem;
+
+    .searching-btn {
+        background-color: $btn-bg;
+        color: #ffffff;
+        text-transform: uppercase;
+
+        &:hover{
+          
+          background-color: #435469;
+          color: #fff;
+        }
+
+    }
+    .searching-content{
+        font-size: 12px;
+        color: #0D1D31;
+    }
+
+
+
+
+}
+
+// ========> last-navbar Scss code end ===============>
+
+//                         #####
+// ============= Responsive All Navbar components start ===============
+
+@media (max-width: 768px) {
+    
+    // top Navbar Scss code start 
+   .navbar{
+
+    .Navbar-logo {
+            width: 7.2vw !important;
+            height: 6vh ;
+    
+        }
+    
+        .logo-text {
+            font-size: 1.2rem !important;
+    
+            &:hover {
+                color: #ED4A43;
+            }
+        }
+    
+        // profile avata image scss block
+        .profile-avata {
+            width: 10vw !important;
+            height: 7vh;
+            border: 1px solid #0c0c0c !important;
+        }
+
+   }
+   // top Navbar Scss code end 
+       
+    // midele Navbar scss code start
+        .middle-navbar {
+            
+    
+            .nav-item {
+    
+    
+                .nav-link {
+                    font-size: 0.7rem !important;
+                    font-weight: 600;
+    
+                }
+            }
+    
+    
+    
+        }
+    // midele Navbar scss code end
+
+
+   // last Navbar Scss code start
+
+   .last-navbar {
+       background-color: $bg;
+       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+       margin-top: 0.3rem;
+
+       .searching-btn {
+           background-color: $btn-bg;
+           color: #ffffff;
+           text-transform: uppercase;
+
+           &:hover {
+
+               background-color: #435469;
+               color: #fff;
+           }
+
+       }
+
+       .searching-content {
+           font-size: 12px;
+           color: #0D1D31;
+       }
+
+
+
+
+   }
+
+   // last Navbar Scss code end
+
+}
+
+// ============= Responsive All Navbar end ===============
+
+
+
+
+
+
 // ###
 // ========> Footer Scss code start ===============>
 

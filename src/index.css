@@ -3,11 +3,98 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap");
+.navbar .navbar-brand .Navbar-logo {
+  width: 3.2vw;
+  height: 6vh;
+}
+.navbar .navbar-brand .logo-text {
+  cursor: pointer;
+  transition: all ease-in 0.4s;
+  font-weight: 800;
+  color: #0D1D31;
+}
+.navbar .navbar-brand .logo-text:hover {
+  color: #ED4A43;
+}
 .navbar .profile-avata {
   width: 4vw;
   height: 8vh;
+  border: 1px solid #ED4A43;
 }
 
+.middle-navbar {
+  background-color: #FBFBFB;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-top: 0.3rem;
+}
+.middle-navbar .nav-item .nav-link {
+  color: #0D1D31;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.middle-navbar .nav-item .nav-link:hover {
+  color: #ED4A43;
+}
+
+.last-navbar {
+  background-color: #FBFBFB;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-top: 0.3rem;
+}
+.last-navbar .searching-btn {
+  background-color: #ED4A43;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.last-navbar .searching-btn:hover {
+  background-color: #435469;
+  color: #fff;
+}
+.last-navbar .searching-content {
+  font-size: 12px;
+  color: #0D1D31;
+}
+
+@media (max-width: 768px) {
+  .navbar .Navbar-logo {
+    width: 7.2vw !important;
+    height: 6vh;
+  }
+  .navbar .logo-text {
+    font-size: 1.2rem !important;
+  }
+  .navbar .logo-text:hover {
+    color: #ED4A43;
+  }
+  .navbar .profile-avata {
+    width: 10vw !important;
+    height: 7vh;
+    border: 1px solid #0c0c0c !important;
+  }
+  .middle-navbar .nav-item .nav-link {
+    font-size: 0.7rem !important;
+    font-weight: 600;
+  }
+  .last-navbar {
+    background-color: #FBFBFB;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-top: 0.3rem;
+  }
+  .last-navbar .searching-btn {
+    background-color: #ED4A43;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+  .last-navbar .searching-btn:hover {
+    background-color: #435469;
+    color: #fff;
+  }
+  .last-navbar .searching-content {
+    font-size: 12px;
+    color: #0D1D31;
+  }
+}
 .Home-page {
   width: 100%;
   height: 100vh !important;
