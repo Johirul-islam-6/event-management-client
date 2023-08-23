@@ -1,0 +1,147 @@
+@import '../../scss/global.variable';
+
+// ===========> here allEvent containers scss style
+.Event-Management-body {
+
+    // Leatest Event List section SCSS start
+    .event-heading-border {
+        cursor: pointer;
+
+        .event-heading-text {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            transition: all ease-out 0.5s;
+            margin: 0 1rem;
+            padding-bottom: 0.5rem;
+            line-height: 24px;
+            border-bottom: 3px solid #ED4A43;
+            color: #ED4A43;
+
+            &:hover {
+                border-bottom: 3px solid #ED4A43;
+                color: #ED4A43;
+            }
+        }
+
+        .event-heading-text-all {
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            transition: all ease-out 0.5s;
+            margin: 0 1rem;
+            padding-bottom: 0.5rem;
+            line-height: 24px;
+
+            &:hover {
+                border-bottom: 3px solid #ED4A43;
+                color: #ED4A43;
+            }
+        }
+    }
+
+    // Leatest Event List section SCSS end
+
+
+    // All event Cards section SCSS start
+    .all-event-cards {
+
+
+        .card {
+            max-width: 700px;
+            padding: 1%;
+            // border: unset ;
+
+            //card image
+            .card-image {
+                height: 47vh;
+                width: 40vw;
+                border-radius: 20%;
+            }
+
+            //card title 
+            .card-title {
+                border-left: 2px solid #0D1D31;
+                padding-left: 0.5rem;
+                color: #0D1D31;
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+
+            .date-titele {
+                color: #0f3b71;
+                font-weight: 600;
+
+                .text-color {
+                    color: #0D1D31;
+                    font-size: 0.9rem;
+
+                }
+            }
+
+            // free ticket text
+            .free-ticket {
+                color: #ED4A43;
+                font-size: 1.2rem;
+                font-weight: 600;
+
+            }
+
+            .card-text {
+                font-weight: 600;
+                font-size: 1rem;
+            }
+
+            .btn-RSVP {
+                background-color: #ED4A43;
+                color: #f0f0f0;
+                border: unset;
+                font-weight: 600;
+                transition: all ease-in 0.4s;
+
+                &:hover {
+                    background-color: #FBFBFB;
+                    border: 1px solid #b0b0b0 !important;
+                    color: #0D1D31;
+                }
+            }
+
+            .btn-view {
+
+                background-color: #FBFBFB;
+                border: 1px solid #b0b0b0 !important;
+                color: #070707;
+                border: unset;
+                font-weight: 600;
+                transition: all ease-in 0.4s;
+
+                &:hover {
+                    background-color: #ED4A43;
+                    color: #ffff;
+                }
+            }
+        }
+
+        // All event Cards section Responsive part
+        @media (max-width : 765px) {
+            .card-image {
+                height: 47vh;
+                width: 40vw;
+
+            }
+
+            .card-image {
+                height: 60vh !important;
+                width: 100% !important;
+                background-position: center center;
+                background-size: cover;
+                margin: 0 auto !important;
+                padding: 0.5rem;
+                border-radius: 0% !important;
+            }
+        }
+    }
+
+    // All event Cards section SCSS end
+
+}

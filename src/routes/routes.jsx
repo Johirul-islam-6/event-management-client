@@ -12,6 +12,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/event/:id",
+        element: <Home />,
+      },
     ],
   },
 ])

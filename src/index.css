@@ -94,14 +94,6 @@
     color: #0D1D31;
   }
 }
-.Home-page {
-  padding: 5% 0;
-}
-
-.Event-Management-body .event-heding-image {
-  width: 3vw;
-  height: 6vh;
-}
 .Event-Management-body .event-heading-border {
   cursor: pointer;
 }
@@ -190,17 +182,22 @@
   background-color: #ED4A43;
   color: white;
 }
-
 @media (max-width: 765px) {
-  .card-image {
+  .Event-Management-body .all-event-cards .card-image {
+    height: 47vh;
+    width: 40vw;
+  }
+  .Event-Management-body .all-event-cards .card-image {
     height: 60vh !important;
     width: 100% !important;
     background-position: center center;
     background-size: cover;
     margin: 0 auto !important;
     padding: 0.5rem;
+    border-radius: 0% !important;
   }
 }
+
 * {
   margin: 0;
   padding: 0;
