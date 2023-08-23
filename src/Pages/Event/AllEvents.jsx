@@ -1,11 +1,12 @@
 import { FaFileDownload,  FaFileUpload, FaLocationArrow, FaMapMarkerAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import {LastNavbar } from '../../Components/Navbar/LastNavbar'
 
 export const AllEvents = () => {
   return (
     <>
-    
+    {/* last navbar searching event components*/}
+ <LastNavbar/>
 
  <div className="AllEvents pt-4">
 

@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Main } from "../LayOut/Main";
 import { Home } from "../Pages/Home/Home";
-import { EventDetails } from "../Pages/Event/Event Details/EventDetails";
+import { EventDetails } from "../Pages/Event/Event_Details/EventDetails";
 import { Login } from "../Pages/Registration/Login";
 import { Registration } from "../Pages/Registration/Registration";
 import { ErrorPage } from "../Pages/Error/ErrorPage";
+import { CreateEvent } from "../Pages/Event/Create Event/CreateEvent";
+import { About } from "../Pages/About/About";
 
 
 const router = createBrowserRouter([
@@ -21,6 +23,15 @@ const router = createBrowserRouter([
         path: "/event/:id",
         element: <EventDetails />,
       },
+      {
+        path: "/create-event",
+        element: <CreateEvent />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      
       
     ],
   },
@@ -32,6 +43,7 @@ const router = createBrowserRouter([
         path: "/singup",
         element: <Registration />,
       },
+      
 ])
 
 

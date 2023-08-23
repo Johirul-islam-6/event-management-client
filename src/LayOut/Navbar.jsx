@@ -1,7 +1,7 @@
 
 import { MiddleNavbar } from "../Components/Navbar/MiddleNavbar";
 import { TopNavbar } from "../Components/Navbar/TopNavbar";
-import { LastNavbar } from "../Components/Navbar/LastNavbar";
+// import { LastNavbar } from "../Components/Navbar/LastNavbar";
 
 export const Navbar = () => {
   return (
@@ -12,7 +12,7 @@ export const Navbar = () => {
    {/* middle navbar */}
     <MiddleNavbar/>
     {/* last navbar */}
-    <LastNavbar/>
+    {/* <LastNavbar/> */}
 
 
 
