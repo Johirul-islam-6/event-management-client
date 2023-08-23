@@ -6,12 +6,12 @@ export const Navbar = () => {
 <nav className="navbar bg-body-tertiary">
   <div className="container-fluid mx-md-5">
     <a className="navbar-brand d-flex justify-content-center align-items-center">
-       <img className="Navbar-logo mb-2" src="https://i.ibb.co/fYNfPd6/png-logo.png" alt="" />
+       <img className="Navbar-logo mb-2 img-fluid" src="https://i.ibb.co/fYNfPd6/png-logo.png" alt="" />
         <h3 className="ms-2 realway logo-text">E-Management</h3>
     </a>
     <div className="">
       
-      <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" className="rounded-circle mb-0 profile-avata" 
+      <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" className="rounded-circle img-fluid mb-0 profile-avata" 
       alt="Avatar" />
 
     </div>
@@ -23,7 +23,7 @@ export const Navbar = () => {
 
 {/* ================== middle navbar start ==================  */}
 
-<ul className="nav justify-content-center bg-body-tertiary middle-navbar py-2">
+<div className="nav justify-content-center bg-body-tertiary middle-navbar py-2">
   <li className="nav-item">
     <a className="nav-link " aria-current="page" href="#">Home</a>
   </li>
@@ -36,45 +36,42 @@ export const Navbar = () => {
   <li className="nav-item">
     <a className="nav-link disabled" aria-disabled="true">profile</a>
   </li>
-</ul>
+</div>
 
 {/* ================== middle navbar end ==================  */}
 {/* ### */}
 
 {/* ================== last navbar start ==================  */}
 
-<ul className=" justify-content-center bg-body-tertiary last-navbar py-md-3 py-2">
-  
+<div className=" justify-content-center bg-body-tertiary last-navbar py-md-3 py-2">
   
       <form action="">
         
-        <div className="row d-flex justify-content-center">
+        <div className=" d-flex justify-content-center">
           
-          <div className="col-auto">
-            <p className="">
-              <strong></strong>
-            </p>
-          </div>
           
-          <div className="col-md-5 col-12">
-            <div className="form-outline form-white ">
-              <input type="text" id="searching-data" className="form-control w-100 mx-auto" />
-              <label className="w-100 mx-auto pt-2 text-center event-discription text-uppercase searching-content d-none d-md-block" >searching event name, location, start-date/time, etc.. </label>
-            </div>
-          </div>
+          
+          <div className="col-md-12  ">
 
-          <div className="col-auto ">
-            <button type="submit" className="btn btn-outline-light mt-2 mt-md-0 searching-btn event-discription ">
+             <div className="d-flex w-50 mx-auto justify-content-center form-outline form-white search-bar">
+               <input type="text" id="searching-data" className="form-control  mx-auto" />
+              <button type="submit" className="btn btn-outline-light  ms-2 mt-md-0 searching-btn event-discription ">
               Search
             </button>
+             </div>
+
+         
+             <label className="w-100 mx-auto pt-2 text-center event-discription text-uppercase searching-content d-none d-md-block" >searching event name, location, start-date/time, etc.. </label>
           </div>
+
+          
           
         </div>
         
       </form>
 
 
-</ul>
+</div>
 
 {/* ================== last navbar end ==================  */}
 

@@ -81,19 +81,25 @@ $bg: #FBFBFB;
     background-color: $bg;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     margin-top: 0.3rem;
+    width: 100%;
+    .search-bar{
+       
 
-    .searching-btn {
-        background-color: $btn-bg;
-        color: #ffffff;
-        text-transform: uppercase;
-
-        &:hover{
-          
-          background-color: #435469;
-          color: #fff;
-        }
+        .searching-btn {
+                background-color: $btn-bg;
+                color: #ffffff;
+                text-transform: uppercase;
+        
+                &:hover {
+                    background-color: #435469;
+                    color: #fff;
+                }
+        
+            }
 
     }
+
+   
     .searching-content{
         font-size: 12px;
         color: #0D1D31;
@@ -113,6 +119,7 @@ $bg: #FBFBFB;
     
     // top Navbar Scss code start 
    .navbar{
+    
 
     .Navbar-logo {
             width: 7.2vw !important;
@@ -161,22 +168,24 @@ $bg: #FBFBFB;
    // last Navbar Scss code start
 
    .last-navbar {
-       background-color: $bg;
-       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-       margin-top: 0.3rem;
-
-       .searching-btn {
-           background-color: $btn-bg;
-           color: #ffffff;
-           text-transform: uppercase;
-
-           &:hover {
-
-               background-color: #435469;
-               color: #fff;
-           }
-
-       }
+       
+          .search-bar{
+                width: 100% !important;
+                
+                .searching-btn {
+                        background-color: $btn-bg;
+                        color: #ffffff;
+                        text-transform: uppercase;
+                
+                        &:hover {
+                
+                            background-color: #435469;
+                            color: #fff;
+                        }
+                
+                    }
+          }
+       
 
        .searching-content {
            font-size: 12px;

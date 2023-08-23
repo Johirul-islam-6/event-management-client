@@ -41,13 +41,14 @@
   background-color: #FBFBFB;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin-top: 0.3rem;
+  width: 100%;
 }
-.last-navbar .searching-btn {
+.last-navbar .search-bar .searching-btn {
   background-color: #ED4A43;
   color: #ffffff;
   text-transform: uppercase;
 }
-.last-navbar .searching-btn:hover {
+.last-navbar .search-bar .searching-btn:hover {
   background-color: #435469;
   color: #fff;
 }
@@ -76,17 +77,15 @@
     font-size: 0.7rem !important;
     font-weight: 600;
   }
-  .last-navbar {
-    background-color: #FBFBFB;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    margin-top: 0.3rem;
+  .last-navbar .search-bar {
+    width: 100% !important;
   }
-  .last-navbar .searching-btn {
+  .last-navbar .search-bar .searching-btn {
     background-color: #ED4A43;
     color: #ffffff;
     text-transform: uppercase;
   }
-  .last-navbar .searching-btn:hover {
+  .last-navbar .search-bar .searching-btn:hover {
     background-color: #435469;
     color: #fff;
   }
@@ -96,11 +95,112 @@
   }
 }
 .Home-page {
-  width: 100%;
-  height: 100vh !important;
-  background-color: rgb(224, 222, 222);
+  padding: 5% 0;
 }
 
+.Event-Management-body .event-heding-image {
+  width: 3vw;
+  height: 6vh;
+}
+.Event-Management-body .event-heading-border {
+  cursor: pointer;
+}
+.Event-Management-body .event-heading-border .event-heading-text {
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  transition: all ease-out 0.5s;
+  margin: 0 1rem;
+  padding-bottom: 0.5rem;
+  line-height: 24px;
+  border-bottom: 3px solid #ED4A43;
+  color: #ED4A43;
+}
+.Event-Management-body .event-heading-border .event-heading-text:hover {
+  border-bottom: 3px solid #ED4A43;
+  color: #ED4A43;
+}
+.Event-Management-body .event-heading-border .event-heading-text-all {
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  transition: all ease-out 0.5s;
+  margin: 0 1rem;
+  padding-bottom: 0.5rem;
+  line-height: 24px;
+}
+.Event-Management-body .event-heading-border .event-heading-text-all:hover {
+  border-bottom: 3px solid #ED4A43;
+  color: #ED4A43;
+}
+.Event-Management-body .all-event-cards .card {
+  max-width: 700px;
+  padding: 1%;
+}
+.Event-Management-body .all-event-cards .card .card-image {
+  height: 47vh;
+  width: 40vw;
+  border-radius: 20%;
+}
+.Event-Management-body .all-event-cards .card .card-title {
+  border-left: 2px solid #0D1D31;
+  padding-left: 0.5rem;
+  color: #0D1D31;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.Event-Management-body .all-event-cards .card .date-titele {
+  color: #0f3b71;
+  font-weight: 600;
+}
+.Event-Management-body .all-event-cards .card .date-titele .text-color {
+  color: #0D1D31;
+  font-size: 0.9rem;
+}
+.Event-Management-body .all-event-cards .card .free-ticket {
+  color: #ED4A43;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.Event-Management-body .all-event-cards .card .card-text {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.Event-Management-body .all-event-cards .card .btn-RSVP {
+  background-color: #ED4A43;
+  color: #f0f0f0;
+  border: unset;
+  font-weight: 600;
+  transition: all ease-in 0.4s;
+}
+.Event-Management-body .all-event-cards .card .btn-RSVP:hover {
+  background-color: #FBFBFB;
+  border: 1px solid #b0b0b0 !important;
+  color: #0D1D31;
+}
+.Event-Management-body .all-event-cards .card .btn-view {
+  background-color: #FBFBFB;
+  border: 1px solid #b0b0b0 !important;
+  color: #070707;
+  border: unset;
+  font-weight: 600;
+  transition: all ease-in 0.4s;
+}
+.Event-Management-body .all-event-cards .card .btn-view:hover {
+  background-color: #ED4A43;
+  color: white;
+}
+
+@media (max-width: 765px) {
+  .card-image {
+    height: 60vh !important;
+    width: 100% !important;
+    background-position: center center;
+    background-size: cover;
+    margin: 0 auto !important;
+    padding: 0.5rem;
+  }
+}
 * {
   margin: 0;
   padding: 0;
