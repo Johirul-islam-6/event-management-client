@@ -4,8 +4,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;600&family=Roboto:ital,wght@0,300;0,400;1,100&display=swap");
 .navbar .navbar-brand .Navbar-logo {
-  width: 3.2vw;
-  height: 6vh;
+  width: 2.7vw;
+  height: 5vh;
 }
 .navbar .navbar-brand .logo-text {
   cursor: pointer;
@@ -17,14 +17,14 @@
   color: #ED4A43;
 }
 .navbar .profile-avata {
-  width: 4vw;
-  height: 8vh;
-  border: 1px solid #ED4A43;
+  width: 3.5vw;
+  height: 6.5vh;
+  border: 2px solid #c2520d;
 }
 
 .middle-navbar {
   background-color: #FBFBFB;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
   margin-top: 0.3rem;
 }
 .middle-navbar .nav-item .nav-link {
@@ -39,7 +39,7 @@
 
 .last-navbar {
   background-color: #FBFBFB;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
   margin-top: 0.3rem;
   width: 100%;
 }

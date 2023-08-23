@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Main } from "../LayOut/Main";
 import { Home } from "../Pages/Home/Home";
+import { EventDetails } from "../Pages/Event/Event Details/EventDetails";
 
 
 const router = createBrowserRouter([
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/event/:id",
-        element: <Home />,
+        element: <EventDetails />,
       },
     ],
   },
