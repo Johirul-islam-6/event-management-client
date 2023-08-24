@@ -10,11 +10,12 @@ export const AllEvents = () => {
 
   const [allEvent, setAllEvent] = useState();
   const [loding, setLoding] = useState(true);
+
   // Main Display event Data storate state. searching data, limit= event, page=event get all data to display 
   const [QueryEventData , setQueryEventData] = useState(allEvent)
 
 
-  // =================== Pagination base event show the display function =============>
+  // =================== Pagination base event Display function =============>
 
   const [receivedPaginationData, setReceivedPaginationData] = useState("1");
 
@@ -78,14 +79,12 @@ export const AllEvents = () => {
   //  setLocat base Time set start  ==================>
     const createdAtMoment = moment(allEvent?.createdAt).tz('Asia/Dhaka'); // Replace 'Asia/Dhaka' with your desired time zone
 
-  // Format the converted timestamp
   const formattedCreatedAt = createdAtMoment.format('MMMM Do YYYY, h:mm:ss a');
 
   console.log(formattedCreatedAt)
 
  //  setLocat base Time set end  <==================
 
-console.log(receivedPaginationData, "main")
 
 
   return (
@@ -94,7 +93,7 @@ console.log(receivedPaginationData, "main")
     <LastNavbar onDataUpdate={updateReceivedData}/>
 
      {/* // Parents section start ===================> */}
-          <section className="AllEvents py-4">
+          <section className="AllEvents py-4 mx-md-5 mx-2">
             <div className="Event-Management-body d-block justify-content-start ">
 
         {/* Leatest 4 Event List Body Nav Text section  ====================>   */}
@@ -106,7 +105,7 @@ console.log(receivedPaginationData, "main")
               <h2 className="event-heading-text text-uppercase latest-event pt-2 ms-1">Latest events</h2>
             </span>
             <span className="event-heading-border">
-            <h2 className="event-heading-text-all text-uppercase latest-event pt-2 ms-1">All </h2>
+            <h2  className="event-heading-text-all text-uppercase latest-event pt-2 ms-1">All </h2>
            </span>
             </section>
          {/*  Leatest 4 Event List section end <====================   */}

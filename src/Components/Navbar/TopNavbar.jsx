@@ -13,7 +13,7 @@ export const TopNavbar = () => {
     </Link>
     <div className="">
       
-      <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" className="rounded-circle img-fluid mb-0 profile-avata" 
+      <img src="https://png.pngtree.com/png-vector/20191103/ourmid/pngtree-handsome-young-guy-avatar-cartoon-style-png-image_1947775.jpg" className="rounded-circle img-fluid mb-0 profile-avata" 
       alt="Avatar" />
 
     </div>
