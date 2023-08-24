@@ -29,11 +29,18 @@
         }
 
         // Calander-positioning input field
-  .calander_positioning {
-    right: 110px !important;
-    top: 10px;
-    color: #271753 !important;
-}
+        .calander_positioning {
+              right: 110px !important;
+                top: 10px;
+               color: #271753 !important;
+           }
+
+           .event-input-text-color{
+            color: #271753!important;
+            font-weight: 600;
+           }
+
+
         
 
 }

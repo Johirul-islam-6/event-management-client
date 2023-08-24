@@ -1,1 +1,32 @@
 
+.modal-open-information{
+
+ background-color: rgba(0, 0, 0, 0.295);
+ z-index: 10;
+ position: absolute;
+ top: -15%;
+ left: 4.5%;
+ display: flex;
+ justify-content: center;
+ margin:  0 auto;
+ align-items: center;
+ width: 100%;
+
+}
+
+@media (max-width : 600px) {
+    .modal-open-information {
+    
+            background-color: rgba(0, 0, 0, 0.295);
+            z-index: 10;
+            position: absolute;
+            top: 1%;
+            left: 0% !important;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            align-items: center;
+            width: 100%;
+    
+        }
+}

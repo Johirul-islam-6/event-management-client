@@ -119,12 +119,14 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0
     
         .search:hover>.search-icon {
             background: #1A237E;
+            border: 3px solid #1A237E !important;
             color: #fff;
         }
     
         .search-icon {
     
             height: 50px;
+            margin-left: 3px;
             width: 50px;
             float: right;
             display: flex;
@@ -132,6 +134,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0
             align-items: center;
             color: white;
             background-color: #ED4A43;
+            border: 3px solid #ED4A43 !important;
             
         }
     

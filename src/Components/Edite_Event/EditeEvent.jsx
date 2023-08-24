@@ -1,25 +1,27 @@
+/* eslint-disable react/prop-types */
 import axios from "axios"
-import Cookies from "js-cookie"
-import { useState } from "react"
 // import CalendarView from "../../../Components/React_Calender/CalendarView"
-import Datepicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
-import { FaCalendarAlt } from "react-icons/fa"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
+import PropTypes from 'prop-types';
+import Cookies from "js-cookie";
 
 
-export const CreateEvent = () => {
 
-    // get user in cookies
+// eslint-disable-next-line react/prop-types
+export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
+
+      // get user in cookies
   const  userEmail = Cookies.get('userEmail')
-
- const [selectDate , setSelectedDate] = useState(null);
- const [selectEndDate , setSelectedEndDate] = useState(null);
 
  const navigate = useNavigate()
 
 
+  console.log('informationEvent' , EditeEventData)
+
+
+
+    // ================== Update  Event Data sending ================
    const submitData = async (event) => {
 
     event.preventDefault()
@@ -50,64 +52,54 @@ export const CreateEvent = () => {
 
     }
 
-console.log(EventInputData)
+
 
      try {
       
-      const response = await axios.post(`https://event-managment-jade.vercel.app/api/v1/event/create-event`, EventInputData)
+      const response = await axios.patch(`https://event-managment-jade.vercel.app/api/v1/event/64e70b18f9c99f5d825f8575${EditeEventData?.id}`, EventInputData)
    
       if (response.status === 200) {
-        toast.success('event created successfully')
+        toast.success('event Edited  successfully')
         navigate('/')
       } 
 
     } catch (error) {
       console.error('Error:', error);
-      toast.error('event not created successfully', error?.message)
+      toast.error('event not Edited successfully', error?.message)
     }
 
     };
 
 
- 
- 
 
-
-
+    // modal close 
+    const ModalClose = () =>{
+        CloseModal(false)
+    }
 
   return (
     <>
 
-   <div className="container Create-Event-Page pb-5">
-        <div className=" text-center mt-5 ">
-
-            <h1 className="latest-event fw-bold" >A User Created Event</h1>
-                
-            
-        </div>
-
-    
     <div className="row ">
-      <div className="col-lg-7 mx-auto">
-        <div className="card mt-2 mx-auto p-4 bg-light">
-            <div className="card-body bg-light">
-       
-            <div className = "container">
+      <div className="col-lg-12 mx-auto">
+        <div className="card mt-2 mx-auto p-md-4 bg-light px-md-5">
 
    {/* ---------======== event from input field start ==========---------- */}
 
+        <form className="px-5" onSubmit={submitData}>
 
-        <form onSubmit={submitData}>
-
-            <div className="controls">
-
+            <div className=" row px-md-5 pt-3">
+                <div className="d-flex justify-content-between">
+                     <h1>Event Data Edite</h1>
+                 <button onClick={ModalClose} className="btn-close fw-bold"></button>
+                </div>
                  {/*--- 1st row cetagory, title---*/}
                 <div className="row mt-4">
                     <div className="col-md-6">
                         <div className="form-group">
                             <label className="event-discription fs-6 ms-2 mb-1 ">Event cetagory *</label>
                             <select id="form_need" name="cetagory" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" required="required" data-error="Please specify your need.">
-                                <option  defaultValue="" selected disabled> --Select cetagory-- </option>
+                                <option  defaultValue={EditeEventData?.cetagory} selected disabled> --Select cetagory-- </option>
                                 <option >educational</option>
                                 <option >music and Concerts</option>
                                 <option >conferences</option>
@@ -120,7 +112,7 @@ console.log(EventInputData)
                     <div className="col-md-6">
                         <div className="form-group">
                              <label className="event-discription fs-6 ms-2 mb-1">Event title *</label>
-                            <input id="title" type="text" name="title" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" placeholder=" Event title *" required/>
+                            <input defaultValue={EditeEventData?.title} id="title" type="text" name="title" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" placeholder=" Event title *" required/>
                             </div>
                     </div>
                 </div>
@@ -130,7 +122,7 @@ console.log(EventInputData)
                     <div className="col-md-6">
                         <div className="form-group">
                               <label className="event-discription fs-6 ms-2 mb-1">Event Location *</label>
-                            <input id="location" type="text" name="location" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" placeholder="select event location *" required/>
+                            <input defaultValue={EditeEventData?.location} id="location" type="text" name="location" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" placeholder="select event location *" required/>
                             
                         </div>
                     </div>
@@ -148,46 +140,30 @@ console.log(EventInputData)
                     <div className="col-md-12">
                         <div className="form-group">
                                <label className="event-discription fs-6 ms-2 mb-1">Event Photo *</label>
-                            <input id="photo" type="text" name="image" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" placeholder="event photo online link *" required/>
+                            <input defaultValue={EditeEventData?.image} id="photo" type="text" name="image" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" placeholder="event photo online link *" required/>
                             
                         </div>
                     </div>
                     
                 </div>
-                {/* ----4 row----  start_date, end_date*/}
+                {/* ----4 row----  start_date, end date ---- */}
                 <div className="row mt-4">
                     <div className="col-md-6">
                         <div className="form-group  ">
-                               <label className="event-discription fs-6 ms-2 mb-1">Event Start Date *</label>
+                               <label className="event-discription fs-6 ms-2 mb-1">Event Start Time *</label>
                             <br />  
                             <div className="d-flex position-relative">
-                          <Datepicker id="start_date"  name="start_date" type='date'   selected={selectDate} onChange={date => setSelectedDate(date)} 
-                            dateFormat={'dd/MM/yyyy'} 
-                            minDate={new Date()}
-                            filterDate={date=>date.getDay()!=5}
-                            showYearDropdown
-                           
-                            className="form-control event-discription py-2 py-2 event-input-text-color fs-7" required /> 
-                          <FaCalendarAlt className="calander_positioning text-success position-absolute "/> 
-
+                      <input defaultValue={EditeEventData?.start_date} id="date" type="text" name="start_date" className="form-control py-2" placeholder="event Start data *" required/>
                             </div>
                             
                         </div>
                     </div>
                     <div className="col-md-6">
                         <div className="form-group  ">
-                             <label className="event-discription fs-6 ms-2 mb-1">Event End Date *</label>
+                               <label className="event-discription fs-6 ms-2 mb-1">Event End Time *</label>
                             <br />  
                             <div className="d-flex position-relative">
-                          <Datepicker id="end_date"  name="end_date" type='date'  selected={selectEndDate} onChange={date => setSelectedEndDate(date)} 
-                            dateFormat={'dd/MM/yyyy'} 
-                            minDate={new Date()}
-                            filterDate={date=>date.getDay()!=5}
-                            showYearDropdown
-                           
-                            className="form-control event-discription py-2 py-2 event-input-text-color fs-7" required /> 
-                          <FaCalendarAlt className="calander_positioning text-success position-absolute "/> 
-
+                            <input defaultValue={EditeEventData?.start_date} id="date" type="text" name="end_date" className="form-control py-2" placeholder="event End data *" required/>
                             </div>
                             
                         </div>
@@ -199,26 +175,31 @@ console.log(EventInputData)
                     <div className="col-md-12">
                         <div className="form-group">
                              <label className="event-discription fs-6 ms-2 mb-2 ">Event Description *</label>
-                            <textarea id="description" name="description" className="form-control event-discription" placeholder="Write your event description here." rows="4" required></textarea>
+                            <textarea defaultValue={EditeEventData?.description} id="description" name="description" className="form-control event-discription" placeholder="Write your event description here." rows="4" required></textarea>
                             </div>
 
                         </div>
 
 
-                    <div className="col-md-12 mt-4 d-flex justify-content-center">
+                     <div className="col-md-12 mt-4 d-flex justify-content-center gap-3">
                         
-                        <input onSubmit={submitData} type="submit" className="btn btn-success btn-send  py-2 fs-6 btn-block latest-event fw-bold" defaultValue="Send Data" />
+                        <input onClick={ModalClose} type="button" className="btn  bg-danger btn-send  pt-2 btn-block px-md-4 py-md-6" defaultValue="close" />
+                        <input onSubmit={submitData} type="submit" className="btn btn-success btn-send  pt-2 btn-block px-md-4 py-md-3 fs-6 " defaultValue="Send Data" />
                     
                 </div>
           
                 </div>
          </div>
          </form>
-        </div>
-            </div>
+      
+        
+   
+ 
 
 
-    </div>
+
+
+ 
        
 
     </div>
@@ -230,3 +211,6 @@ console.log(EventInputData)
     </>
   )
 }
+EditeEvent.propTypes = {
+  onDataUpdate: PropTypes.func.isRequired
+};

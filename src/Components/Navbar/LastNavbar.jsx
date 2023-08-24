@@ -23,7 +23,7 @@ export const LastNavbar = ({ onDataUpdate }) => {
    {/* --------searching data from---------- */}
    <div  className="d-flex justify-content-center">
         <div className="search">
-            <input value={inputData} onChange={handleInputChange} name='search' type="text" className="search-input" placeholder="search..." />
+            <input defaultValue={inputData} onChange={handleInputChange} name='search' type="text" className="search-input" placeholder="search..." />
             <button onClick={sendDataToParent}   className="search-icon">
                 <i className="fa fa-search"></i>
             </button>

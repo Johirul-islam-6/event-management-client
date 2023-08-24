@@ -24,7 +24,7 @@ const CalendarView = () => {
       <div className="calendar-container">
         <Calendar
           onChange={setSelectedDate}
-          value={selectedDate}
+          defaultValue={selectedDate}
           tileContent={({ date }) => {
             const event = events.find(
               (event) => event.date === date.toISOString().split("T")[0]

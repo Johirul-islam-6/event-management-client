@@ -81,7 +81,7 @@ export const AllEvents = () => {
 
   const formattedCreatedAt = createdAtMoment.format('MMMM Do YYYY, h:mm:ss a');
 
-  console.log(formattedCreatedAt)
+  // console.log(formattedCreatedAt)
 
  //  setLocat base Time set end  <==================
 
@@ -163,9 +163,11 @@ export const AllEvents = () => {
         
         <div className="d-flex justify-content-between">
           <button type="button" className="px-md-5 px-3 py-2 rounded-2 event-title hover-zoom text-uppercase btn-RSVP ">RSVP</button>
-         <Link to={`/event/${event?.id}`}>
+        
+         <Link to={`/event/${event?._id}`}>
           <button type="button" className=" px-md-5 px-3 py-2 rounded-2 event-title text-uppercase btn-view">View</button>
          </Link>
+       
           
         </div>
       </div>
@@ -174,6 +176,8 @@ export const AllEvents = () => {
  </div>
             
  </div>
+          
+          
           </>  
           
     ))

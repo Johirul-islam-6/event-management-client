@@ -2,6 +2,9 @@ import { Link, useNavigate } from "react-router-dom"
 import { TopNavbar } from "../../Components/Navbar/TopNavbar"
 
 import { toast } from "react-toastify";
+import axios from "axios";
+import Cookies from "js-cookie";
+
 
 
 export const Login = () => {
@@ -20,33 +23,29 @@ export const Login = () => {
   
 
   try {
-    // const response = await axios.post(`https://event-managment-jade.vercel.app/api/v1/users/login`, informationUserData,{
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //     });
-       const response = await fetch('https://event-managment-jade.vercel.app/api/v1/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(informationUserData),
-      });
+   
+      const response = await axios.post(`https://event-managment-jade.vercel.app/api/v1/users/login`, informationUserData);
+
+    // console.log(response?.data?.data?.accessToken, "respon data")
+    const accessToken = response?.data?.data?.accessToken
+    if (response?.status === 200) {
+
+       // Store email, accessToken, store in cookie.
+      Cookies.set('userEmail', email);
+      Cookies.set('accessToken', accessToken);
 
 
-      if (response.ok) {
-        toast.success('A user created successfully');
-        navigate('/')
-      } else {
-        toast.error('Failed to create user');
-      }
-
+      toast.success('A user created successfully');
+      navigate('/')
+    }
 
   } catch (error) {
-    toast.error('Failed to create user', error);
-    console.log(error);
+    toast.error(error?.response?.data?.errorMessages[0]?.message);
+    // console.log(error?.response?.data?.errorMessages[0]?.message);
   }
 };
+
+
 
   return (
     <>
@@ -80,34 +79,36 @@ export const Login = () => {
 
                 <div className="text-center">
                   <Link to={'/'} className="navbar-brand d-flex justify-content-center align-items-center">
-                  <h3 className="ms-2 realway logo-text  fw-bold">Login</h3>
+                  <h3 className="ms-2 realway logo-text fw-bold event-discription text-uppercase">Login</h3>
         
               </Link>
-               <p>Please login to your account</p>
+               <p className="event-title">Please login to your account</p>
                 </div>
            {/* --------input form----- */}
                 <form onSubmit={singInFromData} className="mt-4">
                  
 
                   <div className="form-outline mb-4">
-                    <input name="email" type="email" id="form2Example11" className="form-control"
+                    <label className="form-label ms-2 mb-1 event-title fs-6" > Email Address</label>
+                    <input name="email" type="email" id="form2Example11" className="form-control py-3 fs-6 event-discription"
                       placeholder="email address"  required/>
-                    <label className="form-label" >Username</label>
+                    
                   </div>
 
                   <div className="form-outline mb-4">
-                    <input name="password" type="password" id="form2Example22" className="form-control" required/>
-                    <label className="form-label">Password</label>
+                    <label className="form-label ms-2 mb-1 event-title fs-6 " > Current Password</label>
+                    <input name="password" type="password"  placeholder="Enter password" id="form2Example22" className="event-discription form-control py-3 fs-6" required/>
+                
                   </div>
 
                   <div className="text-center pt-1 mb-5 pb-1">
-                    <button type='submit' className="btn btn-primary flex w-100  btn-block fa-lg gradient-custom-2 mb-3 login-btn" >Log
+                    <button type='submit' className="btn btn-primary flex w-100  btn-block fa-lg gradient-custom-2 mb-3 login-btn event-discription" >Log
                       in</button>
                   </div>
 
                   <Link to={'/singup'} className="d-flex align-items-center text-decoration-none justify-content-center pb-4">
-                    <p className="mb-0 me-2">Dont have an account?</p>
-                    <button type="button" className="btn btn-outline-danger">Create new</button>
+                    <p className="mb-0 me-2 event-discription">Dont have an account?</p>
+                    <button type="button" className="btn btn-outline-danger event-discription">Create new</button>
                   </Link>
 
                 </form>
@@ -116,8 +117,8 @@ export const Login = () => {
             </div>
             <div className="col-lg-6  align-items-center gradient-custom-2 d-none d-md-flex">
               <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-                <h4 className="mb-4">This is a Simple Event Management.</h4>
-                <p className="small mb-0">Event management involves planning, organizing, and executing various gatherings, conferences, or celebrations to ensure they run smoothly. It includes coordinating logistics, selecting venues, arranging catering, managing schedules, and overseeing audio-visual setups. Skilled event managers anticipate potential issues, handle last-minute changes, and maintain clear communication with clients, vendors, and participants</p>
+                <h4 className="mb-4 event-discription">This is a Simple Event Management.</h4>
+                <p className="small mb-0 fs-6 justify-content-center">Event management involves planning, organizing, and executing various gatherings, conferences, or celebrations to ensure they run smoothly. It includes coordinating logistics, selecting venues, arranging catering, managing schedules, and overseeing audio-visual setups. Skilled event managers anticipate potential issues, handle last-minute changes, and maintain clear communication with clients, vendors, and participants</p>
                <h5 className="text-end mt-3">Thank you</h5>
               </div>
             </div>
