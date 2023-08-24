@@ -12,24 +12,20 @@ import Cookies from "js-cookie";
 export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
 
       // get user in cookies
-  const  userEmail = Cookies.get('userEmail')
+   const  userEmail = Cookies.get('userEmail')
+   const navigate = useNavigate()
 
- const navigate = useNavigate()
-
-
-  console.log('informationEvent' , EditeEventData)
-
+    //checking valid Event creator email !== Local user Email 
+    const userParmition = EditeEventData?.email === userEmail
 
 
     // ================== Update  Event Data sending ================
    const submitData = async (event) => {
 
     event.preventDefault()
-    // console.log(event.target.title.value , "fsd" , cetagory)
 
     // input field value resive
     const inputForm = event.target;
-    const cetagory = inputForm.cetagory?.value;
     const title = inputForm.title?.value;
     const location = inputForm.location?.value;
     const start_date = inputForm.start_date?.value;
@@ -41,7 +37,7 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
  
 
     const EventInputData = {
-        cetagory,
+        cetagory : EditeEventData?.cetagory,
         title,
         location,
         start_date,
@@ -55,8 +51,10 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
 
 
      try {
+
+        console.log(EventInputData)
       
-      const response = await axios.patch(`https://event-managment-jade.vercel.app/api/v1/event/64e70b18f9c99f5d825f8575${EditeEventData?.id}`, EventInputData)
+      const response = await axios.patch(`https://event-managment-jade.vercel.app/api/v1/event/${EditeEventData?.id}`, EventInputData)
    
       if (response.status === 200) {
         toast.success('event Edited  successfully')
@@ -79,9 +77,10 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
 
   return (
     <>
+  
 
-    <div className="row ">
-      <div className="col-lg-12 mx-auto">
+         <div className="row Modal-Div">
+        <div className="col-lg-12 mx-auto">
         <div className="card mt-2 mx-auto p-md-4 bg-light px-md-5">
 
    {/* ---------======== event from input field start ==========---------- */}
@@ -206,7 +205,10 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
     
 
    </div>
-  </div>
+         </div>
+        
+     
+  
 
     </>
   )

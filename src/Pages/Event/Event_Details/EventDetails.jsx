@@ -5,6 +5,7 @@ import {  useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify";
 import { Loding } from "../../../Components/Loding/Loding";
 import { EditeEvent } from "../../../Components/Edite_Event/EditeEvent";
+import Cookies from "js-cookie";
 
 
 
@@ -16,11 +17,11 @@ export const EventDetails = () => {
   const [ singelEvent, setSingelEvent] = useState();
   const [loding, setLoding] = useState(true)
 
+  const userEmail = Cookies.get('userEmail')
 
-
-
-  // const userEmail = 'rasel1@gmil.com'; 
-
+   //checking valid Event creator email !== Local user Email 
+    const userParmition = singelEvent?.email === userEmail;
+    console.log(userParmition)
 
  // <-----========== Get New sinel event api request ==========------>
    useEffect(() => {
@@ -42,15 +43,13 @@ export const EventDetails = () => {
   const eventDelete =async (singelEvent) => {
 
     const {id, email} =singelEvent;
-       console.log(email)
-        //checking valid Event creator email === user Email function
-    // const result = email !== userEmail
 
-    // if(result){
-    //   return toast.error('you are not this event creator. So the event will not be deleted !')
-    // }else if(!result){
-    //  return console.log('continues..')
-    // }
+    //checking valid Event creator email !== Local user Email 
+    const result = email === userEmail
+
+    if(!result){
+      return toast.error('you are not this event creator. So the event will not be deleted !')
+    }
 
    try {
      
@@ -131,16 +130,21 @@ export const EventDetails = () => {
           <h5 className="text-uppercase ">attendees list : 31 Membrs </h5>
         </div>
      
-
-         <div className="d-block d-md-flex justify-content-end ">
-        
+<div className="d-block d-md-flex justify-content-end ">
+       {userParmition ? <>
          <button onClick={EditeEventInformation} type="button"  className="px-5 py-2 fw-bold rounded-2 event-title hover-zoom text-uppercase bg-success text-white fw-bold">Edite</button>
         
          
           <button onClick={() => eventDelete(singelEvent)} type="button" className=" px-5 fw-bold py-2 rounded-2 ms-md-2 my-md-0 my-2 event-title text-uppercase bg-danger text-white fw-bold">Delete</button>
 
-        </div>
-         
+       
+       
+       </> : <>
+         <button type="button"  className="px-5 py-2 fw-bold rounded-2 mt-3 event-title hover-zoom text-uppercase bg-success text-white fw-bold">RSVP</button>
+        
+       
+       </>}
+         </div>
         
       </div>
           </div>
