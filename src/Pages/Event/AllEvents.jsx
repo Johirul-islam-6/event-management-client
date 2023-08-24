@@ -4,6 +4,7 @@ import {LastNavbar } from '../../Components/Navbar/LastNavbar'
 import { useEffect, useState } from "react";
 import moment from 'moment-timezone';
 import { Loding } from "../../Components/Loding/Loding";
+import { Pagination } from "../../Components/Pagination/Pagination";
 
 export const AllEvents = () => {
 
@@ -13,10 +14,19 @@ export const AllEvents = () => {
   const [QueryEventData , setQueryEventData] = useState(allEvent)
 
 
+  // =================== Pagination base event show the display function =============>
+
+  const [receivedPaginationData, setReceivedPaginationData] = useState("1");
+
+  const updateReceivedPaginationData = newData => {
+    setReceivedPaginationData(newData);
+  };
+
+
    // ============= By Default display the event data start ================>
 
    useEffect(() => {
-    fetch("https://event-managment-jade.vercel.app/api/v1/event/?page=1&limit=8&sort=createdAt&sortOrder=desc")
+    fetch(`https://event-managment-jade.vercel.app/api/v1/event/?page=${receivedPaginationData}&limit=4&sort=createdAt&sortOrder=desc`)
       .then(response => response.json())
       .then(data => {
         
@@ -26,7 +36,7 @@ export const AllEvents = () => {
       .catch(error => {
         console.error("Error fetching events:", error);
       });
-  }, []);
+  }, [receivedPaginationData]);
 
   // ============= By Default display the event data end <================
 
@@ -45,7 +55,7 @@ export const AllEvents = () => {
   async function fetchData() {
     setLoding(true)
   try {
-    const response = await fetch(`https://event-managment-jade.vercel.app/api/v1/event/?searchTerm=${receivedSearchingData}&page=1&limit=4`); // Replace with your API endpoint
+    const response = await fetch(`https://event-managment-jade.vercel.app/api/v1/event/?searchTerm=${receivedSearchingData}&page=${receivedPaginationData}&limit=4`); // Replace with your API endpoint
     const eventsData = await response.json();
     setQueryEventData(eventsData); // Update state with fetched data
     setLoding(false)
@@ -59,7 +69,7 @@ export const AllEvents = () => {
 
      // call extranal fetchingData function in use effect
       fetchData()
-   },[receivedSearchingData])
+   },[receivedSearchingData,receivedPaginationData])
 
 
  // ================= searching querys get to the display data End functionlty  <==========================
@@ -75,7 +85,7 @@ export const AllEvents = () => {
 
  //  setLocat base Time set end  <==================
 
-
+console.log(receivedPaginationData, "main")
 
 
   return (
@@ -83,9 +93,8 @@ export const AllEvents = () => {
     {/* searching event components last navbar import & [ get resive input field value ]  =====> */}
     <LastNavbar onDataUpdate={updateReceivedData}/>
 
-
-          <div className="AllEvents pt-4">
-
+     {/* // Parents section start ===================> */}
+          <section className="AllEvents py-4">
             <div className="Event-Management-body d-block justify-content-start ">
 
         {/* Leatest 4 Event List Body Nav Text section  ====================>   */}
@@ -102,14 +111,11 @@ export const AllEvents = () => {
             </section>
          {/*  Leatest 4 Event List section end <====================   */}
 
-
-
-  {/* =======================> All Event Cards Body section start ===============>  */}
- <section className="all-event-cards pt-5 ">
-
-  {/* // row event cards */}
+  {/* =======================> All Event Cards section start ===============>  */}
+ <div className="all-event-cards pt-5 ">
  <div className="row ">
 
+  
  {/* if data loade in server site then loading start */}
 {loding ? <><Loding/> </> : null}
 
@@ -143,7 +149,7 @@ export const AllEvents = () => {
     </div>
     <div className="col-md-8 ps-md-4">
       <div className="card-body">
-        <h5 className="card-title event-title "> {event?.title?.slice(0.36)}..</h5>
+        <h5 className="card-title event-title "> {event?.title?.slice(0,42)}..</h5>
         
         <div className="loctaion-time ">
           <span className="d-flex align-items-center  date-titele"> <FaFileUpload/> <span className="text-color ms-2 ">{event?.start_date} </span> </span>
@@ -182,12 +188,15 @@ export const AllEvents = () => {
 
 
  </div>
+ </div>
+</div>
+  {/* =======================> All Event Cards section end <===============  */}
 
 
-   
+{/* ------------import Pagination Components and get resive page number ---------- */}
+ <Pagination onDataUpdate ={updateReceivedPaginationData}/>
+
 </section>
-          </div>
-          </div>
 
 
 

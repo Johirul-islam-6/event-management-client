@@ -1,0 +1,58 @@
+
+.Pagination-component{
+
+        .flex {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto
+        }
+    
+        @media (max-width:991.98px) {
+            .padding {
+                padding: 0.5rem
+            }
+        }
+    
+        @media (max-width:767.98px) {
+            .padding {
+                padding: 0.5rem
+            }
+        }
+    
+        .padding {
+            padding: 0.5rem
+        }
+    
+        .container {
+            margin-top: 10px
+        }
+    
+        .pagination,
+        .jsgrid .jsgrid-pager {
+            display: flex;
+            padding-left: 0;
+            list-style: none;
+            border-radius: 0.25rem
+        }
+    
+    
+    
+        .page-link {
+            color: rgba(255, 255, 255, 0.82);
+            font-weight: 600;
+        }
+    
+        .pagination.pagination-flat .page-item {
+            margin: 0 .25rem;
+        }
+    
+        .pagination-success .page-item.active .page-link,
+        a {
+            background: #ED4A43;
+            border-color: #0D1D31;
+            border: 1px solid #0D1D31;
+        }
+        .left-right-icon-bg{
+            background-color: #0d1d31e0;
+        }
+}

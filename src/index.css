@@ -416,6 +416,49 @@
     transform: translateY(-20px);
   }
 }
+.Pagination-component .flex {
+  flex: 1 1 auto;
+}
+@media (max-width: 991.98px) {
+  .Pagination-component .padding {
+    padding: 0.5rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .Pagination-component .padding {
+    padding: 0.5rem;
+  }
+}
+.Pagination-component .padding {
+  padding: 0.5rem;
+}
+.Pagination-component .container {
+  margin-top: 10px;
+}
+.Pagination-component .pagination,
+.Pagination-component .jsgrid .jsgrid-pager {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+.Pagination-component .page-link {
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 600;
+}
+.Pagination-component .pagination.pagination-flat .page-item {
+  margin: 0 0.25rem;
+}
+.Pagination-component .pagination-success .page-item.active .page-link,
+.Pagination-component a {
+  background: #ED4A43;
+  border-color: #0D1D31;
+  border: 1px solid #0D1D31;
+}
+.Pagination-component .left-right-icon-bg {
+  background-color: rgba(13, 29, 49, 0.8784313725);
+}
+
 * {
   margin: 0;
   padding: 0;
