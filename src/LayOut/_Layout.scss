@@ -80,30 +80,62 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0
 .last-navbar {
     background-color: $bg;
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-    margin-top: 0.3rem;
-    width: 100%;
-    .search-bar{
-       
+    
+    .search {
+            margin-bottom: auto;
+            margin-top: 20px;
+            background-color: #fff;
+            border: 1px solid #0d1d3186;
+            
+        }
+    
+        .search-input {
+    
+            color: white;
+            border: 0;
+            outline: 0;
+            background: none;
+            width: 0;
+            margin-top: 5px;
+            caret-color: transparent;
+            line-height: 40px;
+            transition: width 0.4s linear;
+    
+        }
 
-        .searching-btn {
-                background-color: $btn-bg;
-                color: #ffffff;
-                text-transform: uppercase;
-        
-                &:hover {
-                    background-color: #435469;
-                    color: #fff;
-                }
-        
-            }
+        .search .search-input {
+            padding: 0 10px;
+            width: 550px;
+            caret-color: #536bf6;
+            font-size: 21px;
+            font-weight: 300;
+            color: black;
+            transition: width 0.4s linear;
+            top: 0 !important;
+            z-index: 1000;
+           
 
-    }
-
-   
-    .searching-content{
-        font-size: 12px;
-        color: #0D1D31;
-    }
+        }
+    
+        .search:hover>.search-icon {
+            background: #1A237E;
+            color: #fff;
+        }
+    
+        .search-icon {
+    
+            height: 50px;
+            width: 50px;
+            float: right;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: #ED4A43;
+            
+        }
+    
+         
 
 
 
@@ -117,7 +149,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0
 
 @media (max-width: 768px) {
     
-    // top Navbar Scss code start 
+    // top Navbar Scss code start ====>
    .navbar{
     
 
@@ -143,9 +175,9 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0
         }
 
    }
-   // top Navbar Scss code end 
+   // top Navbar Scss code end <====
        
-    // midele Navbar scss code start
+    // midele Navbar scss code start===>
         .middle-navbar {
             
     
@@ -162,43 +194,50 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0
     
     
         }
-    // midele Navbar scss code end
+    // midele Navbar scss code end <====
 
 
-   // last Navbar Scss code start
+   // last Navbar Scss code start====>
 
    .last-navbar {
        
-          .search-bar{
-                width: 100% !important;
-                
-                .searching-btn {
-                        background-color: $btn-bg;
-                        color: #ffffff;
-                        text-transform: uppercase;
-                
-                        &:hover {
-                
-                            background-color: #435469;
-                            color: #fff;
-                        }
-                
-                    }
-          }
-       
-
-       .searching-content {
-           font-size: 12px;
-           color: #0D1D31;
-       }
+        .search .search-input {
+                padding: 0 10px;
+                width: 300px;
+                caret-color: #536bf6;
+                font-size: 21px;
+               
+        
+        
+            }
 
 
 
 
    }
 
-   // last Navbar Scss code end
+   // last Navbar Scss code end <====
 
+}
+
+@media (max-width: 448px){
+.search .search-input {
+        padding: 0 10px;
+        width: 200px !important;
+        caret-color: #536bf6;
+        font-size: 21px;
+        font-weight: 300;
+    
+    }
+
+    //card view btn and btn-RSVP
+    .btn-RSVP{
+        font-size: 15px !important;
+    }
+    .btn-view{
+       
+        font-size: 15px !important;
+    }
 }
 
 // ============= Responsive All Navbar end ===============

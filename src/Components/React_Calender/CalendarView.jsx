@@ -7,7 +7,7 @@ const CalendarView = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   // You can replace this mock data with your actual event data
   const events = [
-    { date: "2023-08-25", title: "Event 1" },
+    { date: "2023-08-26", title: "Event 1" },
     { date: "2023-08-27", title: "Event 2" },
     // ... Add more events
   ];

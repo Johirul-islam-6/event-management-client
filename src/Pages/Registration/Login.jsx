@@ -1,8 +1,53 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { TopNavbar } from "../../Components/Navbar/TopNavbar"
+
+import { toast } from "react-toastify";
 
 
 export const Login = () => {
+  const navigate = useNavigate()
+
+  const singInFromData = async (event) => {
+  event.preventDefault();
+  const email = event?.target?.email?.value;
+  const password = event?.target?.password?.value;
+
+  const informationUserData = {
+    email,
+    password,
+  };
+
+  
+
+  try {
+    // const response = await axios.post(`https://event-managment-jade.vercel.app/api/v1/users/login`, informationUserData,{
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //     });
+       const response = await fetch('https://event-managment-jade.vercel.app/api/v1/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(informationUserData),
+      });
+
+
+      if (response.ok) {
+        toast.success('A user created successfully');
+        navigate('/')
+      } else {
+        toast.error('Failed to create user');
+      }
+
+
+  } catch (error) {
+    toast.error('Failed to create user', error);
+    console.log(error);
+  }
+};
+
   return (
     <>
     <TopNavbar/>
@@ -40,23 +85,23 @@ export const Login = () => {
               </Link>
                <p>Please login to your account</p>
                 </div>
-
-                <form className="mt-4">
+           {/* --------input form----- */}
+                <form onSubmit={singInFromData} className="mt-4">
                  
 
                   <div className="form-outline mb-4">
-                    <input type="email" id="form2Example11" className="form-control"
-                      placeholder="email address" />
+                    <input name="email" type="email" id="form2Example11" className="form-control"
+                      placeholder="email address"  required/>
                     <label className="form-label" >Username</label>
                   </div>
 
                   <div className="form-outline mb-4">
-                    <input type="password" id="form2Example22" className="form-control" />
+                    <input name="password" type="password" id="form2Example22" className="form-control" required/>
                     <label className="form-label">Password</label>
                   </div>
 
                   <div className="text-center pt-1 mb-5 pb-1">
-                    <button className="btn btn-primary flex w-100  btn-block fa-lg gradient-custom-2 mb-3 login-btn" type="button">Log
+                    <button type='submit' className="btn btn-primary flex w-100  btn-block fa-lg gradient-custom-2 mb-3 login-btn" >Log
                       in</button>
                   </div>
 

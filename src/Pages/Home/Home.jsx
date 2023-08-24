@@ -1,5 +1,5 @@
 
-import CalendarView from "../../Components/React_Calender/CalendarView";
+// import CalendarView from "../../Components/React_Calender/CalendarView";
 import { AllEvents } from "../Event/AllEvents";
 
 
@@ -10,7 +10,7 @@ export const Home = () => {
           
           <AllEvents/>
 
-            <CalendarView />
+            {/* <CalendarView /> */}
 
     </div>
     

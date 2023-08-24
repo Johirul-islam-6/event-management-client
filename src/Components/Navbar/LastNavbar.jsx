@@ -1,35 +1,37 @@
+import {  useState } from "react"
+import PropTypes from 'prop-types';
+
+export const LastNavbar = ({ onDataUpdate }) => {
+
+  const [inputData, setInputData] = useState("");
+
+  const handleInputChange = event => {
+    setInputData(event.target.value);
+    console.log(event.target.value)
+  };
+
+  const sendDataToParent = () => {
+    onDataUpdate(inputData); // Call the parent's callback function
+  };
 
 
-export const LastNavbar = () => {
+
+
   return (
-    <div className=" justify-content-center bg-body-tertiary last-navbar pt-md-5 pt-3  pb-3 ">
-  
-      <form action="">
-        
-        <div className=" d-flex justify-content-center">
-          
-          
-          
-          <div className="col-md-12  ">
 
-             <div className="d-flex w-50 mx-auto justify-content-center form-outline form-white search-bar">
-               <input type="text" id="searching-data" className="form-control  mx-auto" />
-              <button type="submit" className="btn btn-outline-light  ms-2 mt-md-0 searching-btn event-discription ">
-              Search
+ <div className="last-navbar pb-3">
+   {/* --------searching data from---------- */}
+   <div  className="d-flex justify-content-center">
+        <div className="search">
+            <input value={inputData} onChange={handleInputChange} name='search' type="text" className="search-input" placeholder="search..." />
+            <button onClick={sendDataToParent}   className="search-icon">
+                <i className="fa fa-search"></i>
             </button>
-             </div>
-
-         
-             <label className="w-100 mx-auto pt-2 text-center event-discription text-uppercase searching-content d-none d-md-block" >searching event name, location, start-date/time, etc.. </label>
-          </div>
-
-          
-          
         </div>
-        
-      </form>
+    </div>
 
-
-</div>
+    </div>
   )
 }
+LastNavbar.propTypes = {
+  onDataUpdate: PropTypes.func.isRequired}

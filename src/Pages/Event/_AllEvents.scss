@@ -1,9 +1,9 @@
 @import '../../scss/global.variable';
 
-// ===========> here allEvent containers scss style
+// ===========> here allEvent containers scss style<===========
 .Event-Management-body {
 
-    // Leatest Event List section SCSS start
+    // Leatest Event List section SCSS start ========>
     .event-heading-border {
         cursor: pointer;
 
@@ -40,10 +40,10 @@
         }
     }
 
-    // Leatest Event List section SCSS end
+    // Leatest Event List section SCSS end <==========
 
 
-    // All event Cards section SCSS start
+    // All event Cards section SCSS start ===========>
     .all-event-cards {
 
 
@@ -54,9 +54,10 @@
 
             //card image
             .card-image {
-                height: 47vh;
-                width: 40vw;
-                border-radius: 20%;
+                height: 42vh;
+                width: 100% !important;
+                // border-radius: 20%;
+
             }
 
             //card title 
@@ -142,6 +143,16 @@
         }
     }
 
-    // All event Cards section SCSS end
+    // All event Cards section SCSS end <==========
+
+
+    //not-abailable-event 
+    .not-abailable-event{
+        width: 100%;
+        height: 60vh !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 }

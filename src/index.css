@@ -40,21 +40,48 @@
 .last-navbar {
   background-color: #FBFBFB;
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-  margin-top: 0.3rem;
-  width: 100%;
 }
-.last-navbar .search-bar .searching-btn {
-  background-color: #ED4A43;
-  color: #ffffff;
-  text-transform: uppercase;
+.last-navbar .search {
+  margin-bottom: auto;
+  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid rgba(13, 29, 49, 0.5254901961);
 }
-.last-navbar .search-bar .searching-btn:hover {
-  background-color: #435469;
+.last-navbar .search-input {
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  margin-top: 5px;
+  caret-color: transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+}
+.last-navbar .search .search-input {
+  padding: 0 10px;
+  width: 550px;
+  caret-color: #536bf6;
+  font-size: 21px;
+  font-weight: 300;
+  color: black;
+  transition: width 0.4s linear;
+  top: 0 !important;
+  z-index: 1000;
+}
+.last-navbar .search:hover > .search-icon {
+  background: #1A237E;
   color: #fff;
 }
-.last-navbar .searching-content {
-  font-size: 12px;
-  color: #0D1D31;
+.last-navbar .search-icon {
+  height: 50px;
+  width: 50px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #ED4A43;
 }
 
 @media (max-width: 768px) {
@@ -77,21 +104,26 @@
     font-size: 0.7rem !important;
     font-weight: 600;
   }
-  .last-navbar .search-bar {
-    width: 100% !important;
+  .last-navbar .search .search-input {
+    padding: 0 10px;
+    width: 300px;
+    caret-color: #536bf6;
+    font-size: 21px;
   }
-  .last-navbar .search-bar .searching-btn {
-    background-color: #ED4A43;
-    color: #ffffff;
-    text-transform: uppercase;
+}
+@media (max-width: 448px) {
+  .search .search-input {
+    padding: 0 10px;
+    width: 200px !important;
+    caret-color: #536bf6;
+    font-size: 21px;
+    font-weight: 300;
   }
-  .last-navbar .search-bar .searching-btn:hover {
-    background-color: #435469;
-    color: #fff;
+  .btn-RSVP {
+    font-size: 15px !important;
   }
-  .last-navbar .searching-content {
-    font-size: 12px;
-    color: #0D1D31;
+  .btn-view {
+    font-size: 15px !important;
   }
 }
 .Event-Management-body .event-heading-border {
@@ -130,9 +162,8 @@
   padding: 1%;
 }
 .Event-Management-body .all-event-cards .card .card-image {
-  height: 47vh;
-  width: 40vw;
-  border-radius: 20%;
+  height: 42vh;
+  width: 100% !important;
 }
 .Event-Management-body .all-event-cards .card .card-title {
   border-left: 2px solid #0D1D31;
@@ -196,6 +227,13 @@
     padding: 0.5rem;
     border-radius: 0% !important;
   }
+}
+.Event-Management-body .not-abailable-event {
+  width: 100%;
+  height: 60vh !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-form {
@@ -293,6 +331,91 @@
   margin-top: 20px;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh !important;
+}
+
+.flex {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 991.98px) {
+  .padding {
+    padding: 1.5rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .padding {
+    padding: 1rem;
+  }
+}
+.padding {
+  padding: 5rem;
+}
+
+.card {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+}
+
+.border-secondary,
+.loader-demo-box {
+  border-color: #a3a4a5 !important;
+}
+
+.rounded,
+.loader-demo-box {
+  border-radius: 0.25rem !important;
+}
+
+.loader-demo-box {
+  width: 100%;
+  height: 200px;
+}
+
+.jumping-dots-loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.jumping-dots-loader span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: rgba(241, 83, 110, 0.8);
+  margin: 35px 5px;
+}
+
+.jumping-dots-loader span:nth-child(1) {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.jumping-dots-loader span:nth-child(2) {
+  animation: bounce 1s ease-in-out 0.33s infinite;
+}
+
+.jumping-dots-loader span:nth-child(3) {
+  animation: bounce 1s ease-in-out 0.66s infinite;
+}
+
+@keyframes bounce {
+  0%, 75%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-20px);
+  }
+}
 * {
   margin: 0;
   padding: 0;

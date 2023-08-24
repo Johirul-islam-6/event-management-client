@@ -11,7 +11,10 @@ export const MiddleNavbar = () => {
     <Link to={'/create-event'} className="nav-link" >Create Event</Link>
   </li>
   <li className="nav-item">
-    <Link to={'/about'} className="nav-link" >about</Link>
+    <Link to={'/login'} className="nav-link" >login</Link>
+  </li>
+  <li className="nav-item">
+    <Link to={'/singup'} className="nav-link" >sing up</Link>
   </li>
   <li className="nav-item">
     <Link to={'/profile'} className="nav-link disabled" aria-disabled="true">profile</Link>

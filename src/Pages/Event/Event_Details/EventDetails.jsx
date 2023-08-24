@@ -14,7 +14,7 @@ export const EventDetails = () => {
   const navigate = useNavigate()
 
 
-  const userEmail = 'rasel1@gmil.com'; 
+  // const userEmail = 'rasel1@gmil.com'; 
 
 
  // <-----========== Get New sinel event api request ==========------>
@@ -22,7 +22,7 @@ export const EventDetails = () => {
     fetch(`https://event-managment-jade.vercel.app/api/v1/event/${id}`)
       .then(response => response.json())
       .then(data => {
-        setSingelEvent(data?.data); // Update the events state with fetched data
+        setSingelEvent(data?.data); 
       })
       .catch(error => {
         console.error("Error fetching events:", error);
@@ -30,22 +30,21 @@ export const EventDetails = () => {
   }, [id]);
 
 
-  // <------========= Delete singel Event api request =======-------->
+  // <------========= Delete singel Event api request start =======-------->
 
   const eventDelete =async (singelEvent) => {
 
     const {id, email} =singelEvent;
-
+       console.log(email)
         //checking valid Event creator email === user Email function
-    const result = email !== userEmail
+    // const result = email !== userEmail
 
-    if(result){
-      return toast.error('you are not this event creator. So the event will not be deleted !')
-    }else if(!result){
-     return console.log('continues..')
-    }
+    // if(result){
+    //   return toast.error('you are not this event creator. So the event will not be deleted !')
+    // }else if(!result){
+    //  return console.log('continues..')
+    // }
 
-//  try catch error handeling 
    try {
      
       const response = await axios.delete(`https://event-managment-jade.vercel.app/api/v1/event/${id}`);
