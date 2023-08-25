@@ -29,6 +29,10 @@
             width: 100%;
     
         }
+                 .event-cretor {
+                     font-size: 12px !important;
+                     font-weight: 600;
+                 }
 
                
 }
@@ -36,4 +40,18 @@
 // profile image
 .profile-image{
     width: 150px;
+}
+// booking btn show class
+.show{
+   font-size: 0.6rem !important;
+   background-color: #e74545;
+   color: #fff;
+   padding: 2px 3px;
+   cursor: pointer;
+   border: 0.8px solid #852626;
+
+   &:hover{
+    background-color: #b73737;
+   }
+
 }

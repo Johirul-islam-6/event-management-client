@@ -7,11 +7,15 @@ import { Loding } from "../../Components/Loding/Loding";
 import { Pagination } from "../../Components/Pagination/Pagination";
 import CalanderView from '../../Components/React_Calender/CalendarView'
 
+
 export const AllEvents = () => {
 
  // by defult display show 4 event state
   const [allEvent, setAllEvent] = useState();
   const [loding, setLoding] = useState(true);
+
+  // searching input Base data loade input text
+  const [receivedSearchingData, setReceivedSearchingData] = useState();
 
   //Event lish show the Display Searching , pagination etc start
   const [QueryEventData , setQueryEventData] = useState(allEvent)
@@ -45,8 +49,7 @@ export const AllEvents = () => {
 
   // ============= Searching functionality start =================>
 
-  // searching input data store in state
-  const [receivedSearchingData, setReceivedSearchingData] = useState("");
+  
 
  //transfer the function send LastNavber.jsx page
   const updateReceivedData = newData => {
@@ -63,6 +66,7 @@ export const AllEvents = () => {
     const response = await fetch(`https://event-managment-jade.vercel.app/api/v1/event/?searchTerm=${receivedSearchingData}&page=${receivedPaginationData}&limit=4`); // Replace with your API endpoint
     const eventsData = await response.json();
     setQueryEventData(eventsData); // Update state with fetched data
+    
     setLoding(false)
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -75,21 +79,11 @@ export const AllEvents = () => {
       fetchData()
    },[receivedSearchingData,receivedPaginationData]) // searching dependency
 
-
+console.log('searching' , QueryEventData)
  // =============== Searching input field to get api request Start <============
 
 
-  // ============= Location base Time zone  start  ============>
-    const createdAtMoment = moment(allEvent?.createdAt).tz('Asia/Dhaka'); // Replace 'Asia/Dhaka' with your desired time zone
-
-  const formattedCreatedAt = createdAtMoment.format('MMMM Do YYYY, h:mm:ss a');
-
-
-
- //  ============= Location base Time zone  end  <============
-
-
- //  ============= RSVP Attendance functionality  ============>
+ //  ============= RSVP Attendance Modal functionality  ============>
 
  const [attendanceEvent, setAttendanceEvent] = useState();
  const [attendanceModal, setAttendanceModal] = useState(false)
@@ -102,11 +96,9 @@ export const AllEvents = () => {
 
  }
 
- // modal close function
-
+ // modal close function function
  const bookingModalClose =() =>{
    setAttendanceModal(false)
-
  }
 
 
@@ -169,7 +161,7 @@ export const AllEvents = () => {
     <div className="col-md-8 ps-md-4">
       <div className="card-body">
         <h5 className="card-title event-title "> {event?.title?.slice(0,42)}..</h5>
-        
+         <p className=" event-title event-cretor ms-2">Event Creator - {event?.email?.slice(0,30)}</p>
         <div className="loctaion-time ">
           <span className="d-flex align-items-center  date-titele"> <FaFileUpload/> <span className="text-color ms-2 ">{event?.start_date} </span> </span>
         <span className="d-flex align-items-center  date-titele mt-1 "> <FaFileDownload/> <span className="text-color ms-2">{event?.end_date} at 20:00 - 22:00 </span> </span>

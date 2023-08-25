@@ -238,6 +238,10 @@
   background-color: #ED4A43;
   color: white;
 }
+.Event-Management-body .all-event-cards .card .event-cretor {
+  font-size: 12px !important;
+  font-weight: 600;
+}
 @media (max-width: 765px) {
   .Event-Management-body .all-event-cards .card-image {
     height: 47vh;
@@ -366,9 +370,25 @@
     align-items: center;
     width: 100%;
   }
+  .event-cretor {
+    font-size: 12px !important;
+    font-weight: 600;
+  }
 }
 .profile-image {
   width: 150px;
+}
+
+.show {
+  font-size: 0.6rem !important;
+  background-color: #e74545;
+  color: #fff;
+  padding: 2px 3px;
+  cursor: pointer;
+  border: 0.8px solid #852626;
+}
+.show:hover {
+  background-color: #b73737;
 }
 
 .Create-Event-Page h1 {
@@ -546,6 +566,19 @@
 }
 .Pagination-component .left-right-icon-bg {
   background-color: rgba(13, 29, 49, 0.8784313725);
+}
+
+.booking_member-page .card-body {
+  position: relative;
+  height: 400px;
+}
+.booking_member-page .fw-normal img {
+  width: 40px;
+  height: auto;
+}
+
+.body-card {
+  width: 40%;
 }
 
 * {

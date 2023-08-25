@@ -1,5 +1,5 @@
 
-// Here is our all .SCSS file import
+// Here is Overall application  .SCSS file import
 
 @import'./LayOut/Layout';
 @import './scss/global.variable';
@@ -10,6 +10,7 @@
 @import './Components/React_Calender/Calendar.scss';
 @import './Components/Loding/Loding.scss';
 @import './Components/Pagination/Pagination';
+@import './Pages/Booking_Member/booking_member.scss';
 
 //https: //demo.ovathemes.com/eventmana/
 

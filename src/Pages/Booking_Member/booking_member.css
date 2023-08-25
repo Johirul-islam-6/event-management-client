@@ -1,0 +1,12 @@
+.booking_member-page .card-body {
+  position: relative;
+  height: 400px;
+}
+.booking_member-page .fw-normal img {
+  width: 40px;
+  height: auto;
+}
+
+.body-card {
+  width: 40%;
+}/*# sourceMappingURL=booking_member.css.map */

@@ -35,7 +35,7 @@ export const Login = () => {
       Cookies.set('accessToken', accessToken);
 
 
-      toast.success('A user created successfully');
+      toast.success('A user login successfully');
       navigate('/')
     }
 

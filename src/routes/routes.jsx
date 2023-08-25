@@ -7,6 +7,7 @@ import { Registration } from "../Pages/Registration/Registration";
 import { ErrorPage } from "../Pages/Error/ErrorPage";
 import { CreateEvent } from "../Pages/Event/Create_Event/CreateEvent";
 import { Profile } from "../Pages/Profile/Profile";
+import { Booking_Member_lisht } from "../Pages/Booking_Member/Booking_Member_lisht";
 
 
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/booking-member/:id",
+        element: <Booking_Member_lisht />,
       },
       
      

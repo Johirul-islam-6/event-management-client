@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaFileDownload, FaFileUpload, FaMapMarkerAlt } from "react-icons/fa"
-import {  useNavigate, useParams } from "react-router-dom"
+import {  Link, useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify";
 import { Loding } from "../../../Components/Loding/Loding";
 import { EditeEvent } from "../../../Components/Edite_Event/EditeEvent";
@@ -37,6 +37,23 @@ export const EventDetails = () => {
       });
   }, [id]);
 
+ // <-----========== Get All Booking User request showing event booking member ==========------>
+ const [eventbookingUser, seteventbookingUser] = useState()
+   useEffect(() => {
+    fetch(`https://event-managment-jade.vercel.app/api/v1/event-booking/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        seteventbookingUser(data?.data); 
+        // setLoding(false)
+        
+      })
+      .catch(error => {
+        toast.error(error?.response?.data?.errorMessages[0]?.message)
+      });
+  }, [id]);
+
+
+
 
   // <------========= Delete singel Event api request start =======-------->
 
@@ -65,18 +82,24 @@ export const EventDetails = () => {
 
   }
 
-//  ============= Modal EditeEventInformation start ===================>
+ // <------========= Delete singel Event api request end =======-------->
+
+//  ============= Modal Edite Event Information start ===================>
  //optn modal
   const [modal ,setModal] = useState(false)
   const EditeEventInformation =() =>{
     setModal(true)
   }
+
+
   // close modal
   // const [closeModal ,setcloseModal] = useState();
 
   const CloseModal =(data) =>{
     setModal(data)
   }
+
+// end
 
   return (
     <>
@@ -115,6 +138,7 @@ export const EventDetails = () => {
           <div className="col-md-7 col-lg-7 col-12">
                    <div className="card-body">
         <h5 className="card-title event-title ">{singelEvent?.title}</h5>
+        <p className=" event-title event-cretor  ">Event Creator - {singelEvent?.email}</p>
         
         <div className="loctaion-time py-2">
           <span className="d-flex align-items-center  date-titele"> <FaFileUpload/> <span className="text-color ms-2 ">{singelEvent?.start_date} at 10:00 A.M </span> </span>
@@ -127,7 +151,7 @@ export const EventDetails = () => {
         {singelEvent?.description}
         </p>
         <div className="d">
-          <h5 className="text-uppercase ">attendees list : 31 Membrs </h5>
+          <h6 className="text-uppercase fs-7 fw-bold latest-event ">Event attendees : <span className="text-danger">{eventbookingUser?.length ? eventbookingUser?.length : "0"} </span> Member <Link className="text-decoration-none" to={`/booking-member/${singelEvent?.id}`}><span id='show' className="ms-1 show">show </span></Link> </h6>
         </div>
      
 <div className="d-block d-md-flex justify-content-end ">
@@ -140,7 +164,7 @@ export const EventDetails = () => {
        
        
        </> : <>
-         <button type="button"  className="px-5 py-2 fw-bold rounded-2 mt-3 event-title hover-zoom text-uppercase bg-success text-white fw-bold">RSVP</button>
+         <button type="button"  className="px-5 py-2 fw-bold rounded-2 mt-3 event-title hover-zoom text-uppercase border-white bg-warning border-none text-white fw-bold">Like</button>
         
        
        </>}
