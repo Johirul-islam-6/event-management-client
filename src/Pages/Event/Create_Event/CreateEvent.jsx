@@ -106,8 +106,8 @@ console.log(EventInputData)
                     <div className="col-md-6">
                         <div className="form-group">
                             <label className="event-discription fs-6 ms-2 mb-1 ">Event cetagory *</label>
-                            <select id="form_need" name="cetagory" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" required="required" data-error="Please specify your need.">
-                                <option  defaultValue="" selected disabled> --Select cetagory-- </option>
+                            <select id="form_need" name="cetagory" className="form-control event-discription py-2 py-2 event-input-text-color fs-7" required>
+                                <option   selected disabled> --Select cetagory-- </option>
                                 <option >educational</option>
                                 <option >music and Concerts</option>
                                 <option >conferences</option>
@@ -162,7 +162,7 @@ console.log(EventInputData)
                             <br />  
                             <div className="d-flex position-relative">
                           <Datepicker id="start_date"  name="start_date" type='date'   selected={selectDate} onChange={date => setSelectedDate(date)} 
-                            dateFormat={'dd/MM/yyyy'} 
+                            dateFormat={'yyyy/MM/dd'} 
                             minDate={new Date()}
                             filterDate={date=>date.getDay()!=5}
                             showYearDropdown
@@ -207,7 +207,7 @@ console.log(EventInputData)
 
                     <div className="col-md-12 mt-4 d-flex justify-content-center">
                         
-                        <input onSubmit={submitData} type="submit" className="btn btn-success btn-send  py-2 fs-6 btn-block latest-event fw-bold" defaultValue="Send Data" />
+                        <input onSubmit={submitData} type="submit" className="btn btn-success btn-send  py-2 fs-6 btn-block latest-event fw-bold" defaultdefaultValue="Send Data" />
                     
                 </div>
           

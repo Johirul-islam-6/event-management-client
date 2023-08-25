@@ -129,6 +129,28 @@
     font-size: 15px !important;
   }
 }
+.footer {
+  background-color: #F8F8F8 !important;
+}
+.footer a {
+  background-color: #0D1D31;
+  transition: all ease-in 0.5s;
+  cursor: pointer;
+}
+.footer a:hover {
+  border: 1px solid #ED4A43;
+  color: #ED4A43;
+}
+.footer a .fab {
+  color: #898787;
+}
+.footer a .fab:hover {
+  color: #ED4A43;
+}
+.footer .role {
+  color: #0D1D31;
+}
+
 .Event-Management-body .event-heading-border {
   cursor: pointer;
 }
@@ -239,6 +261,33 @@
   align-items: center;
 }
 
+.attendanceModal {
+  background-color: rgba(0, 0, 0, 0.295);
+  z-index: 10;
+  position: absolute;
+  top: 1%;
+  left: 0% !important;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+  width: 100%;
+}
+.attendanceModal .RSVP-modal-body {
+  width: 60%;
+  justify-content: center;
+}
+@media (max-width: 800px) {
+  .attendanceModal .RSVP-modal-body {
+    width: 90% !important;
+  }
+}
+@media (max-width: 430px) {
+  .attendanceModal .RSVP-modal-body {
+    width: 98% !important;
+  }
+}
+
 .login-form {
   width: 100%;
   height: 70vh;
@@ -318,6 +367,10 @@
     width: 100%;
   }
 }
+.profile-image {
+  width: 150px;
+}
+
 .Create-Event-Page h1 {
   margin-bottom: 40px;
 }
@@ -371,6 +424,10 @@
   align-items: center;
   width: 100%;
   height: 80vh !important;
+  position: absolute;
+  z-index: 60;
+  padding: 25% 0;
+  background: #F8F9FA;
 }
 
 .flex {
@@ -486,8 +543,6 @@
 .Pagination-component .pagination-success .page-item.active .page-link,
 .Pagination-component a {
   background: #ED4A43;
-  border-color: #0D1D31;
-  border: 1px solid #0D1D31;
 }
 .Pagination-component .left-right-icon-bg {
   background-color: rgba(13, 29, 49, 0.8784313725);

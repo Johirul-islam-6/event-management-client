@@ -5,26 +5,28 @@ import { useEffect, useState } from "react";
 import moment from 'moment-timezone';
 import { Loding } from "../../Components/Loding/Loding";
 import { Pagination } from "../../Components/Pagination/Pagination";
+import CalanderView from '../../Components/React_Calender/CalendarView'
 
 export const AllEvents = () => {
 
+ // by defult display show 4 event state
   const [allEvent, setAllEvent] = useState();
   const [loding, setLoding] = useState(true);
 
-  // Main Display event Data storate state. searching data, limit= event, page=event get all data to display 
+  //Event lish show the Display Searching , pagination etc start
   const [QueryEventData , setQueryEventData] = useState(allEvent)
 
-
-  // =================== Pagination base event Display function =============>
-
+  // =================== Pagination  functionality =============>
+  // pagination state bydefult value -1
   const [receivedPaginationData, setReceivedPaginationData] = useState("1");
 
+  //transfer the function send pagination.jsx page
   const updateReceivedPaginationData = newData => {
     setReceivedPaginationData(newData);
   };
 
 
-   // ============= By Default display the event data start ================>
+   // ============= By Default 4 Event Display. Query Pagination get request start ==============>
 
    useEffect(() => {
     fetch(`https://event-managment-jade.vercel.app/api/v1/event/?page=${receivedPaginationData}&limit=4&sort=createdAt&sortOrder=desc`)
@@ -39,20 +41,22 @@ export const AllEvents = () => {
       });
   }, [receivedPaginationData]);
 
-  // ============= By Default display the event data end <================
+  // ============= By Default 4 Event Display. Query Pagination get request end <================
 
-  // ========================= searching querys get to the display data start function ==========================>
+  // ============= Searching functionality start =================>
 
-  // --------------- this searching text store useState start -------------->
+  // searching input data store in state
   const [receivedSearchingData, setReceivedSearchingData] = useState("");
 
+ //transfer the function send LastNavber.jsx page
   const updateReceivedData = newData => {
     setReceivedSearchingData(newData);
   };
-  // --------------- this searching text store useState end <--------------
+  // ================= Searching functionality End <====================
 
 
-    //-------- extranal fetchingData function use -------
+    // =============== Searching input field to get api request Start ============>
+    // create extranal fetchData()
   async function fetchData() {
     setLoding(true)
   try {
@@ -65,38 +69,58 @@ export const AllEvents = () => {
   }
 }
 
-   // ------------- we use useEffect searching dependency  ---------------
+  
    useEffect( () =>{
-
-     // call extranal fetchingData function in use effect
+     // call extranal fetchingData() 
       fetchData()
-   },[receivedSearchingData,receivedPaginationData])
+   },[receivedSearchingData,receivedPaginationData]) // searching dependency
 
 
- // ================= searching querys get to the display data End functionlty  <==========================
+ // =============== Searching input field to get api request Start <============
 
 
-  //  setLocat base Time set start  ==================>
+  // ============= Location base Time zone  start  ============>
     const createdAtMoment = moment(allEvent?.createdAt).tz('Asia/Dhaka'); // Replace 'Asia/Dhaka' with your desired time zone
 
   const formattedCreatedAt = createdAtMoment.format('MMMM Do YYYY, h:mm:ss a');
 
-  // console.log(formattedCreatedAt)
 
- //  setLocat base Time set end  <==================
+
+ //  ============= Location base Time zone  end  <============
+
+
+ //  ============= RSVP Attendance functionality  ============>
+
+ const [attendanceEvent, setAttendanceEvent] = useState();
+ const [attendanceModal, setAttendanceModal] = useState(false)
+
+ const RSVP = (event) => {
+
+  
+  setAttendanceEvent(event)
+  setAttendanceModal(true);
+
+ }
+
+ // modal close function
+
+ const bookingModalClose =() =>{
+   setAttendanceModal(false)
+
+ }
 
 
 
   return (
     <>
-    {/* searching event components last navbar import & [ get resive input field value ]  =====> */}
+    {/* send up updateReceivedData() apply searchin data */}
     <LastNavbar onDataUpdate={updateReceivedData}/>
 
-     {/* // Parents section start ===================> */}
+     {/* //=============== Parents section start ================> */}
           <section className="AllEvents py-4 mx-md-5 mx-2">
             <div className="Event-Management-body d-block justify-content-start ">
 
-        {/* Leatest 4 Event List Body Nav Text section  ====================>   */}
+        {/*----> Leatest text content div start */}
             <section className="d-flex align-items-center overflow-hidden">
            
              <span><FaLocationArrow className="text-danger fs-2 me-3 "/></span>
@@ -108,27 +132,23 @@ export const AllEvents = () => {
             <h2  className="event-heading-text-all text-uppercase latest-event pt-2 ms-1">All </h2>
            </span>
             </section>
-         {/*  Leatest 4 Event List section end <====================   */}
+         {/* <---- Leatest text content div end */}
 
-  {/* =======================> All Event Cards section start ===============>  */}
+  {/* ================> All Event Cards Designing Part  start ===============>  */}
  <div className="all-event-cards pt-5 ">
  <div className="row ">
-
-  
- {/* if data loade in server site then loading start */}
+ {/* if data loading then run loding */}
 {loding ? <><Loding/> </> : null}
 
  
- {/*---------Conditon start event get data ----------> */}
+ {/*---------Conditon base Event Not Found | show display data ----------> */}
 { 
   QueryEventData?.data?.length > 0 ? (
    
-    // --============= map () all event ========
+    // all Card map () applay ----------->
      QueryEventData.data.map(event => (
-       
            <>
-         
-
+ 
  {/* ----------- col-number-1 ----------- */}
  <div key={event?._id} className="col-lg-6 md-lg-6 ">
 
@@ -162,13 +182,12 @@ export const AllEvents = () => {
         </p>
         
         <div className="d-flex justify-content-between">
-          <button type="button" className="px-md-5 px-3 py-2 rounded-2 event-title hover-zoom text-uppercase btn-RSVP ">RSVP</button>
+          <button onClick={() => RSVP(event)} type="button" className="px-md-5 px-3 py-2 rounded-2 event-title hover-zoom text-uppercase btn-RSVP ">RSVP</button>
         
          <Link to={`/event/${event?._id}`}>
           <button type="button" className=" px-md-5 px-3 py-2 rounded-2 event-title text-uppercase btn-view">View</button>
          </Link>
        
-          
         </div>
       </div>
     </div>
@@ -179,27 +198,42 @@ export const AllEvents = () => {
           
           
           </>  
-          
     ))
 
   ) : <div className="not-abailable-event"> <h1 className="text-uppercase pb-5 mt-5 text-center">Not available Event !</h1></div>
   
 }
-
-{/* -----------------condition close <---------- */}
-
-
+{/*<---------Conditon base Event Not Found | show display data End ---------- */}
 
  </div>
  </div>
-</div>
-  {/* =======================> All Event Cards section end <===============  */}
+          </div>
 
 
-{/* ------------import Pagination Components and get resive page number ---------- */}
- <Pagination onDataUpdate ={updateReceivedPaginationData}/>
+{/* ------------export to Pagination Components updateReceivedPaginationData() to get resive data  ---------- */}
+     <Pagination onDataUpdate ={updateReceivedPaginationData}/>
 
-</section>
+     {/* ------------> Attendance Modal Open-------- */}
+
+     {
+      attendanceModal ? <>
+        <div className="attendanceModal py-5 ">
+          <div className="row bg-white  RSVP-modal-body p-md-3 p-1 mx-auto w-50 ">
+            <div className="col-lg-12 d-flex justify-content-center">
+              <div className="d-block">
+                
+             <CalanderView attendanceEvent={attendanceEvent} closeModal={bookingModalClose}/>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </> : null
+     }
+
+     </section>
+
+      {/* //=============== Parents section end ================> */}
 
 
 

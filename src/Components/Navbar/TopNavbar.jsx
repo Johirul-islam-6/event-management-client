@@ -19,10 +19,13 @@ export const TopNavbar = () => {
         <h3 className="ms-2 realway logo-text">E-Management</h3>
     </Link>
     <div className="">
-     {
+     { 
+     
       userEmail ? <> 
-       <img src="https://png.pngtree.com/png-vector/20191103/ourmid/pngtree-handsome-young-guy-avatar-cartoon-style-png-image_1947775.jpg" className="rounded-circle img-fluid mb-0 profile-avata" 
+       <Link to={'/profile'}>
+     <img src="https://png.pngtree.com/png-vector/20191103/ourmid/pngtree-handsome-young-guy-avatar-cartoon-style-png-image_1947775.jpg" className="rounded-circle img-fluid mb-0 profile-avata" 
       alt="Avatar" />
+     </Link>
       
       </> : <p className="event-title">welcome our site</p>
      }

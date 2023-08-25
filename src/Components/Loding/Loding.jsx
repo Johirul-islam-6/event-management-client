@@ -14,7 +14,6 @@ export const Loding = () => {
         </div>
     </div>
 </div>
-
     </div>
   )
 }

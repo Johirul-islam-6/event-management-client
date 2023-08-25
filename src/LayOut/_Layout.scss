@@ -252,6 +252,29 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0
 
 // ###
 // ========> Footer Scss code start ===============>
+.footer{
+    background-color: #F8F8F8 !important;
 
+    //icon
+    a{
+        background-color: #0D1D31;
+       transition: all ease-in 0.5s;
+       &:hover{
+        border: 1px solid #ED4A43;
+        color: #ED4A43;
+       }
+        cursor: pointer;
+        .fab {
+                color: #898787;
+                &:hover{
+                    color: #ED4A43;
+                }
+            }
+    }
+    .role{
+        color: #0D1D31;
+    }
+ 
+}
 
 // ========> Footer Scss code end ===============>

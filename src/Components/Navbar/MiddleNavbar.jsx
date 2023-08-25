@@ -41,6 +41,11 @@ export const MiddleNavbar = () => {
     <li className="nav-item">
     <Link onClick={userLogOut} to={''} className="nav-link" >logOut</Link>
   </li>
+  <li className="nav-item">
+    <Link to={'/profile'} className="nav-link " aria-disabled="true"> 
+    profile
+    </Link>
+  </li>
     </> : <>
     <li className="nav-item">
     <Link to={'/login'} className="nav-link" >login</Link>
@@ -48,15 +53,12 @@ export const MiddleNavbar = () => {
   <li className="nav-item">
     <Link to={'/singup'} className="nav-link" >sing up</Link>
   </li>
+  
     
     </>
   }
   
-  <li className="nav-item">
-    <Link to={'/profile'} className="nav-link disabled" aria-disabled="true"> 
-    profile
-    </Link>
-  </li>
+  
 </div>
   )
 }

@@ -15,9 +15,6 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
    const  userEmail = Cookies.get('userEmail')
    const navigate = useNavigate()
 
-    //checking valid Event creator email !== Local user Email 
-    const userParmition = EditeEventData?.email === userEmail
-
 
     // ================== Update  Event Data sending ================
    const submitData = async (event) => {
@@ -182,8 +179,8 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
 
                      <div className="col-md-12 mt-4 d-flex justify-content-center gap-3">
                         
-                        <input onClick={ModalClose} type="button" className="btn  bg-danger btn-send  pt-2 btn-block px-md-4 py-md-6" defaultValue="close" />
-                        <input onSubmit={submitData} type="submit" className="btn btn-success btn-send  pt-2 btn-block px-md-4 py-md-3 fs-6 " defaultValue="Send Data" />
+                        <input onClick={ModalClose} type="button" className="btn  bg-danger btn-send  pt-2 btn-block px-md-4 py-md-6" defaultdefaultValue="close" />
+                        <input onSubmit={submitData} type="submit" className="btn btn-success btn-send  pt-2 btn-block px-md-4 py-md-3 fs-6 " defaultdefaultValue="Send Data" />
                     
                 </div>
           

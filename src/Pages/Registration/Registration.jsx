@@ -99,7 +99,7 @@ const SingupFromData = async (event) => {
           <div className="d-flex justify-content-between align-items-center">
             {/* <!-- Checkbox --> */}
             <div className="form-check mb-0">
-              <input className="form-check-input me-2" type="checkbox" defaultValue="" id="form2Example3" />
+              <input className="form-check-input me-2" type="checkbox" defaultdefaultValue="" id="form2Example3" />
               <label className="form-check-label event-discription" >
                 Remember me
               </label>
