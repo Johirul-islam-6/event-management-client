@@ -50,7 +50,7 @@ export const CreateEvent = () => {
 
     }
 
-console.log(EventInputData)
+
 
      try {
       

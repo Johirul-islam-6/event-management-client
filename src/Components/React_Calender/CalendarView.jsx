@@ -7,12 +7,15 @@ import 'react-calendar/dist/Calendar.css';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 const CalendarView = ({closeModal, attendanceEvent}) => {
+
    const navigate = useNavigate()
   const userEmail = Cookies.get('userEmail');
   const [ EventTime, setEventTime] = useState()
 
+  // date resive
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [bookingDate, setBookingDate] = useState(selectedDate.toDateString());
 
@@ -24,6 +27,8 @@ const CalendarView = ({closeModal, attendanceEvent}) => {
   ];
 
 
+
+
   // user Booking information Object 
 
  
@@ -31,7 +36,7 @@ const CalendarView = ({closeModal, attendanceEvent}) => {
 
   // =================== RSVP Booking Api Request start ===================>
 
-  const RSVPbooking = (event) => {
+  const RSVPbooking = async (event) => {
     event.preventDefault()
     // if user checking
       if(!userEmail){
@@ -50,24 +55,32 @@ const CalendarView = ({closeModal, attendanceEvent}) => {
 
   console.log(bookingInformaion)
 
-  // error handeling
+  // input value error handeling
    if(!bookingInformaion?.bookingDate){
      return toast.warning('select one date')
     }
     else if(!bookingInformaion?.bookingTime){
      return toast.warning('select Time slot ')
     }
-    else if(userEmail !==userEmail){
-     return toast.warning('You are event creator. Don`t booking Access this account')
+    else if(userEmail ===userEmail){
+     return toast.warning('You are event creator. Don`t Allow Booking this event')
     }
 
-    console.log(bookingInformaion)
-    // fetching api request
-    
 
+    // fetching api post request---------->
+     try {
+      
+      const response = await axios.post(`https://event-managment-jade.vercel.app/api/v1/event-booking/create`, bookingInformaion)
+   
+      if (response.status === 200) {
+        toast.success('Booking successfully')
+        closeModal()
+      } 
 
-
-    toast.success('bb')
+    } catch (error) {
+      console.error('Error:', error);
+      toast.error(error?.response?.data?.errorMessages[0]?.message)
+    }
 
 
   }
@@ -97,7 +110,7 @@ const CalendarView = ({closeModal, attendanceEvent}) => {
       <div className="event-list">
         
         <h5 className="event-title mt-2 ">Events Booking Date : <span className="text-danger fw-bolder roboto-navbar-text fs-6">{selectedDate.toDateString()}</span></h5>
-        <h5 className="event-title pb-2 ">Events Time is : <span onChange={(e) => setBookingTime(e?.target?.value)} className="text-danger fw-bolder roboto-navbar-text fs-6">{EventTime}</span></h5>
+        <h5 className="event-title pb-2 ">Events Time is : <span onChange={(e) => setEventTime(e?.target?.value)} className="text-danger fw-bolder roboto-navbar-text fs-6">{EventTime}</span></h5>
         
       </div>
                  {/* booking slot Time */}
