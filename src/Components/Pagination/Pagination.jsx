@@ -29,8 +29,8 @@ export const Pagination = ({ onDataUpdate }) => {
     <>
       <div className="page-content page-container Pagination-component py-3" id="page-content">
         <div className="padding">
-          <div className="row container d-flex justify-content-center">
-            <div className="">
+          <div className="row container d-flex justify-content-center ms-md-2">
+            <div className="ms-md-5">
               <div className="card pt-4">
                 <div className="">
                   <nav>

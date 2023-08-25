@@ -21,7 +21,7 @@ export const AllEvents = () => {
   // ===================> Pagination Event Lisht Api request functionality start ==================>
 
   // pagination state bydefult value -1
-  const [receivedPaginationData, setReceivedPaginationData] = useState("1");
+  const [receivedPaginationData, setReceivedPaginationData] = useState(null);
 
   //transfer the function send pagination.jsx page
   const updateReceivedPaginationData = newData => {

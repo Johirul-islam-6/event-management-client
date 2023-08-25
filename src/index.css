@@ -142,7 +142,7 @@
   color: #ED4A43;
 }
 .footer a .fab {
-  color: #898787;
+  color: #ffffff !important;
 }
 .footer a .fab:hover {
   color: #ED4A43;
@@ -391,6 +391,16 @@
   background-color: #b73737;
 }
 
+.details-event-image {
+  width: 100% !important;
+  height: 70vh !important;
+}
+
+@media (max-width: 450px) {
+  .details-event-image {
+    height: 40vh !important;
+  }
+}
 .Create-Event-Page h1 {
   margin-bottom: 40px;
 }

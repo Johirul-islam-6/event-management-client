@@ -18,7 +18,7 @@ const CalendarView = ({closeModal, attendanceEvent}) => {
   // date resive
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [bookingDate, setBookingDate] = useState(selectedDate.toDateString());
-   setBookingDate()
+  
   // You can replace this mock data with your actual event data
   const events = [
     { date: "2023-08-26", title: "Event 1" },

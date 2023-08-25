@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Loding } from "../../../Components/Loding/Loding";
 import { EditeEvent } from "../../../Components/Edite_Event/EditeEvent";
 import Cookies from "js-cookie";
+import { FacebookShareButton, LineShareButton, TwitterShareButton } from "react-share";
 
 
 
@@ -99,6 +100,14 @@ export const EventDetails = () => {
     setModal(data)
   }
 
+
+  // Socal Media share
+
+  const shareUrl = `https://event-management-client.vercel.app/${singelEvent?.id}`
+  const information = {
+    image : singelEvent?.image,
+    titele : singelEvent?.title,
+  }
 // end
 
   return (
@@ -107,7 +116,7 @@ export const EventDetails = () => {
         {loding ? <><Loding/> </> : null}
 
 
-    <div className="Event-Details-Page mx-md-5 mx-1">
+    <div className="Event-Details-Page mx-md-5 mx-0">
        {/*<----==== routeing text contant =====---> */}
     <div className="my-3 ">
   <nav  aria-label="breadcrumb ">
@@ -132,7 +141,7 @@ export const EventDetails = () => {
             <img
         src={singelEvent?.image}
         alt="Trendy Pants and Shoes"
-        className="img-fluid rounded-start details-card-image w-md-100"
+        className="img-fluid rounded-start details-card-image w-md-100 details-event-image"
       />
           </div>
           <div className="col-md-7 col-lg-7 col-12">
@@ -154,17 +163,33 @@ export const EventDetails = () => {
           <h6 className="text-uppercase fs-7 fw-bold latest-event ">Event attendees : <span className="text-danger">{eventbookingUser?.length ? eventbookingUser?.length : "0"} </span> Member <Link className="text-decoration-none" to={`/booking-member/${singelEvent?.id}`}><span id='show' className="ms-1 show">show </span></Link> </h6>
         </div>
      
-<div className="d-block d-md-flex justify-content-end ">
- 
-       {userParmition ? <>
-         <button onClick={EditeEventInformation} type="button"  className="px-5 py-2 fw-bold rounded-2 event-title hover-zoom text-uppercase bg-success text-white fw-bold">Edite</button>
-          
-          <button onClick={() => eventDelete(singelEvent)} type="button" className=" px-5 fw-bold py-2 rounded-2 ms-md-2 my-md-0 my-2 event-title text-uppercase bg-danger text-white fw-bold">Delete</button>
+<div className="d-flex d-md-flex justify-content-between align-items-center">
+      {/* socal share */}
+        <div>
+      <p className="event-title event-cretor mt-2 px-2 text-white fw-bold bg-success">share social media</p>
+      <FacebookShareButton url={shareUrl} quote={information}>
+       <a className="btn btn-outline-light btn-floating m-1 bg-primary" href="#!" role="button"
+        ><i className="fab fa-facebook-f"></i></a>
+      </FacebookShareButton>
+      <TwitterShareButton url={shareUrl} title={information}>
+         <a className="btn btn-outline-light btn-floating m-1 bg-primary" href="#!" role="button"
+        ><i className="fab fa-twitter"></i></a>
+      </TwitterShareButton>
+      <LineShareButton url={shareUrl} title={information}>
+         <a className="btn btn-outline-light btn-floating m-1 bg-primary" href="#!" role="button"
+        ><i className="fab fa-linkedin-in"></i></a>
+      </LineShareButton>
+    </div>
 
+       {userParmition ? <>
+         <div className="d-block gap-1 mt-5 ">
+          <button onClick={EditeEventInformation} type="button"  className="btn fw-bold rounded-2 event-title hover-zoom text-uppercase bg-success text-white fw-bold">Edite</button>
+          
+          <button onClick={() => eventDelete(singelEvent)} type="button" className="btn fw-bold rounded-2 event-title hover-zoom text-uppercase bg-danger text-white fw-bold ms-2">Delete</button>
+
+         </div>
        </> : <>
-         <button type="button"  className="px-5 py-2 fw-bold rounded-2 mt-3 event-title hover-zoom text-uppercase border-white bg-warning border-none text-white fw-bold">Like</button>
-        
-       
+         <div className="mt-5">  <button onClick={() => toast.success('Liked')} type="button" className="btn fw-bold rounded-2 event-title hover-zoom text-uppercase bg-warning text-white fw-bold ms-2">Like</button> </div>
        </>}
          </div>
         

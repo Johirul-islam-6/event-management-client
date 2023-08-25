@@ -34,7 +34,7 @@
                      font-weight: 600;
                  }
 
-               
+          
 }
 
 // profile image
@@ -54,4 +54,15 @@
     background-color: #b73737;
    }
 
+}
+
+.details-event-image {
+    width: 100% !important;
+    height: 70vh !important;
+}
+@media (max-width : 450px) {
+    .details-event-image {
+          
+            height: 40vh !important;
+        }
 }
