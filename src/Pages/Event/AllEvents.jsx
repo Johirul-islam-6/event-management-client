@@ -2,25 +2,24 @@ import { FaFileDownload,  FaFileUpload, FaLocationArrow, FaMapMarkerAlt } from "
 import { Link } from "react-router-dom";
 import {LastNavbar } from '../../Components/Navbar/LastNavbar'
 import { useEffect, useState } from "react";
-import moment from 'moment-timezone';
 import { Loding } from "../../Components/Loding/Loding";
 import { Pagination } from "../../Components/Pagination/Pagination";
 import CalanderView from '../../Components/React_Calender/CalendarView'
 
 
 export const AllEvents = () => {
-
- // by defult display show 4 event state
-  const [allEvent, setAllEvent] = useState();
+ 
+   // seargin input fild value resive state. 
+  const [receivedSearchingData, setReceivedSearchingData] = useState();
+   // Loading starte
   const [loding, setLoding] = useState(true);
 
-  // searching input Base data loade input text
-  const [receivedSearchingData, setReceivedSearchingData] = useState();
 
-  //Event lish show the Display Searching , pagination etc start
-  const [QueryEventData , setQueryEventData] = useState(allEvent)
+  //seargin, pagination query event data lisht.. 
+  const [QueryEventData , setQueryEventData] = useState()
+  
+  // ===================> Pagination Event Lisht Api request functionality start ==================>
 
-  // =================== Pagination  functionality =============>
   // pagination state bydefult value -1
   const [receivedPaginationData, setReceivedPaginationData] = useState("1");
 
@@ -29,15 +28,13 @@ export const AllEvents = () => {
     setReceivedPaginationData(newData);
   };
 
-
-   // ============= By Default 4 Event Display. Query Pagination get request start ==============>
-
    useEffect(() => {
+
     fetch(`https://event-managment-jade.vercel.app/api/v1/event/?page=${receivedPaginationData}&limit=4&sort=createdAt&sortOrder=desc`)
       .then(response => response.json())
       .then(data => {
-        
-        setAllEvent(data?.data); // Update the events state with fetched data
+        setQueryEventData(data)
+        // Update the events state with fetched data
         setLoding(false)
       })
       .catch(error => {
@@ -45,45 +42,42 @@ export const AllEvents = () => {
       });
   }, [receivedPaginationData]);
 
-  // ============= By Default 4 Event Display. Query Pagination get request end <================
+  // <=================== Pagination Event Lisht Api request functionality end <==================
 
-  // ============= Searching functionality start =================>
 
-  
 
- //transfer the function send LastNavber.jsx page
+
+  // =============> Searching Query Event Lisht data functionality  start =================>
+
+
+ //get input resive searching value in lastNavbar.jsx file
   const updateReceivedData = newData => {
     setReceivedSearchingData(newData);
   };
-  // ================= Searching functionality End <====================
+ 
+   useEffect(  () =>{
+      
+      setLoding(true)
+    if(!receivedSearchingData){
+      return console.log("NoT Searching...")
+    }
+     
+    //fetching 
+     fetch(`https://event-managment-jade.vercel.app/api/v1/event/?searchTerm=${receivedSearchingData}&page=${receivedPaginationData}&limit=4`)
+     .then(res => res.json())
+     .then(data => {
+      setQueryEventData(data)
+      setLoding(false)
+     })
+     
+
+   },[receivedSearchingData]) // searching dependency
 
 
-    // =============== Searching input field to get api request Start ============>
-    // create extranal fetchData()
-  async function fetchData() {
-    setLoding(true)
-  try {
-    const response = await fetch(`https://event-managment-jade.vercel.app/api/v1/event/?searchTerm=${receivedSearchingData}&page=${receivedPaginationData}&limit=4`); // Replace with your API endpoint
-    const eventsData = await response.json();
-    setQueryEventData(eventsData); // Update state with fetched data
-    
-    setLoding(false)
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
-
-  
-   useEffect( () =>{
-     // call extranal fetchingData() 
-      fetchData()
-   },[receivedSearchingData,receivedPaginationData]) // searching dependency
-
-console.log('searching' , QueryEventData)
- // =============== Searching input field to get api request Start <============
+  // =============> Searching Query Event Lisht data functionality  End =================>
 
 
- //  ============= RSVP Attendance Modal functionality  ============>
+ //  =================> Modal Booking  RSVP  Attendance  functionality start  =============>
 
  const [attendanceEvent, setAttendanceEvent] = useState();
  const [attendanceModal, setAttendanceModal] = useState(false)
@@ -100,6 +94,8 @@ console.log('searching' , QueryEventData)
  const bookingModalClose =() =>{
    setAttendanceModal(false)
  }
+
+//  =================> Modal Booking  RSVP  Attendance  functionality start  =============>
 
 
 
@@ -126,25 +122,28 @@ console.log('searching' , QueryEventData)
             </section>
          {/* <---- Leatest text content div end */}
 
-  {/* ================> All Event Cards Designing Part  start ===============>  */}
+
+  {/* ================> All Event Cards Design start  ==================>  */}
+
  <div className="all-event-cards pt-5 ">
  <div className="row ">
- {/* if data loading then run loding */}
+
+ {/* Loader is Loding */}
 {loding ? <><Loding/> </> : null}
 
  
- {/*---------Conditon base Event Not Found | show display data ----------> */}
+ {/*---------Conditon base Event Not Found Data ----------> */}
 { 
   QueryEventData?.data?.length > 0 ? (
    
-    // all Card map () applay ----------->
-     QueryEventData.data.map(event => (
+    // all event list  map ()  --------->
+     QueryEventData?.data?.map(event => (
            <>
  
  {/* ----------- col-number-1 ----------- */}
  <div key={event?._id} className="col-lg-6 md-lg-6 ">
 
-   {/* card body information details */}
+   {/* even card body information  */}
       <div className="card mb-3">
 
   <div className="row g-0 align-items-center">
@@ -188,24 +187,27 @@ console.log('searching' , QueryEventData)
             
  </div>
           
-          
           </>  
     ))
 
   ) : <div className="not-abailable-event"> <h1 className="text-uppercase pb-5 mt-5 text-center">Not available Event !</h1></div>
   
 }
-{/*<---------Conditon base Event Not Found | show display data End ---------- */}
+{/*<--------- Conditon base Event Not Found  End ---------- */}
 
  </div>
  </div>
+
+   {/* <================ All Event Cards Design end  <==================  */}
           </div>
 
 
-{/* ------------export to Pagination Components updateReceivedPaginationData() to get resive data  ---------- */}
+{/* =========== Export & Import data in Pagination page ===========================  */}
      <Pagination onDataUpdate ={updateReceivedPaginationData}/>
 
-     {/* ------------> Attendance Modal Open-------- */}
+
+
+     {/* ------------> RSVP Modal Open Design -------- */}
 
      {
       attendanceModal ? <>
@@ -213,7 +215,7 @@ console.log('searching' , QueryEventData)
           <div className="row bg-white  RSVP-modal-body p-md-3 p-1 mx-auto w-50 ">
             <div className="col-lg-12 d-flex justify-content-center">
               <div className="d-block">
-                
+                {/* =========== Export & Import data in Calander page ===========================  */}
              <CalanderView attendanceEvent={attendanceEvent} closeModal={bookingModalClose}/>
               </div>
             </div>
@@ -222,6 +224,8 @@ console.log('searching' , QueryEventData)
       
       </> : null
      }
+
+      {/* ------------> RSVP Modal Open Design end -------- */}
 
      </section>
 
