@@ -16,7 +16,7 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
    const navigate = useNavigate()
 
 
-    // ================== Update  Event Data sending ================
+    // ================== Update  Event Data  sending api Patch Request ================
    const submitData = async (event) => {
 
     event.preventDefault()
@@ -49,8 +49,7 @@ export const EditeEvent = ({singelEvent:EditeEventData, CloseModal}) => {
 
      try {
 
-        console.log(EventInputData)
-      
+
       const response = await axios.patch(`https://event-managment-jade.vercel.app/api/v1/event/${EditeEventData?.id}`, EventInputData)
    
       if (response.status === 200) {

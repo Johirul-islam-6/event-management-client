@@ -7,9 +7,13 @@ import Cookies from "js-cookie";
 
 
 
-export const Login = () => {
-  const navigate = useNavigate()
 
+export const Login = () => {
+
+  const navigate = useNavigate()
+   const prevLocation = location.state?.from?.pathname || '/';
+
+   // Login form submit data 
   const singInFromData = async (event) => {
   event.preventDefault();
   const email = event?.target?.email?.value;
@@ -20,8 +24,9 @@ export const Login = () => {
     password,
   };
 
-  
 
+
+  //Post fetching
   try {
    
       const response = await axios.post(`https://event-managment-jade.vercel.app/api/v1/users/login`, informationUserData);
@@ -36,7 +41,7 @@ export const Login = () => {
 
 
       toast.success('A user login successfully');
-      navigate('/')
+      navigate(prevLocation, {replace: true})
     }
 
   } catch (error) {

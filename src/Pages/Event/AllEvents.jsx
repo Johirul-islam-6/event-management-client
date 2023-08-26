@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Loding } from "../../Components/Loding/Loding";
 import { Pagination } from "../../Components/Pagination/Pagination";
 import CalanderView from '../../Components/React_Calender/CalendarView'
+import { toast } from "react-toastify";
 
 
 export const AllEvents = () => {
@@ -21,7 +22,7 @@ export const AllEvents = () => {
   // ===================> Pagination Event Lisht Api request functionality start ==================>
 
   // pagination state bydefult value -1
-  const [receivedPaginationData, setReceivedPaginationData] = useState(null);
+  const [receivedPaginationData, setReceivedPaginationData] = useState();
 
   //transfer the function send pagination.jsx page
   const updateReceivedPaginationData = newData => {
@@ -30,6 +31,10 @@ export const AllEvents = () => {
 
    useEffect(() => {
 
+   if(receivedSearchingData){
+    setLoding(false)
+    return  console.log("NoT Searching 1...")
+    }
     fetch(`https://event-managment-jade.vercel.app/api/v1/event/?page=${receivedPaginationData}&limit=4&sort=createdAt&sortOrder=desc`)
       .then(response => response.json())
       .then(data => {
@@ -40,7 +45,7 @@ export const AllEvents = () => {
       .catch(error => {
         console.error("Error fetching events:", error);
       });
-  }, [receivedPaginationData]);
+  }, [receivedPaginationData,receivedSearchingData]);
 
   // <=================== Pagination Event Lisht Api request functionality end <==================
 
@@ -59,9 +64,22 @@ export const AllEvents = () => {
       
       setLoding(true)
     if(!receivedSearchingData){
-      return console.log("NoT Searching...")
+      return 
     }
      
+     // if page number 1 < 2
+     if(receivedPaginationData > 1){
+      toast.warning( `Current Page - ${receivedPaginationData} change page`)
+          setTimeout(() => {
+        toast.success('Select Page number - 1');
+      
+       }, 500);
+     }
+
+    // if page number 1 > 2
+   
+
+
     //fetching 
      fetch(`https://event-managment-jade.vercel.app/api/v1/event/?searchTerm=${receivedSearchingData}&page=${receivedPaginationData}&limit=4`)
      .then(res => res.json())
@@ -71,7 +89,7 @@ export const AllEvents = () => {
      })
      
 
-   },[receivedSearchingData]) // searching dependency
+   },[receivedSearchingData,receivedPaginationData]) // searching dependency
 
 
   // =============> Searching Query Event Lisht data functionality  End =================>

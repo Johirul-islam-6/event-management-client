@@ -15,16 +15,17 @@ export const EventDetails = () => {
   const {id} = useParams();
   const navigate = useNavigate();
 
+ // store  singel event stage
   const [ singelEvent, setSingelEvent] = useState();
   const [loding, setLoding] = useState(true)
 
   const userEmail = Cookies.get('userEmail')
 
+
    //checking valid Event creator email !== Local user Email 
     const userParmition = singelEvent?.email === userEmail;
-    console.log(userParmition)
 
- // <-----========== Get New sinel event api request ==========------>
+ // <-----========== Get this page sinel event Details Display api request ==========------>
    useEffect(() => {
     fetch(`https://event-managment-jade.vercel.app/api/v1/event/${id}`)
       .then(response => response.json())
@@ -36,9 +37,9 @@ export const EventDetails = () => {
       .catch(error => {
         console.error("Error fetching events:", error?.message);
       });
-  }, [id]);
+  }, []);
 
- // <-----========== Get All Booking User request showing event booking member ==========------>
+ // <-----========== Get All Booking User Attendance Member lisht start ==========------>
  const [eventbookingUser, setEventbookingUser] = useState()
    useEffect(() => {
     fetch(`https://event-managment-jade.vercel.app/api/v1/event-booking/${id}`)
@@ -53,7 +54,7 @@ export const EventDetails = () => {
       });
   }, [id]);
 
-
+ // <-----========== Get All Booking User Attendance Member lisht end ==========------>
 
 
   // <------========= Delete singel Event api request start =======-------->
@@ -85,6 +86,8 @@ export const EventDetails = () => {
 
  // <------========= Delete singel Event api request end =======-------->
 
+
+
 //  ============= Modal Edite Event Information start ===================>
  //optn modal
   const [modal ,setModal] = useState(false)
@@ -101,14 +104,14 @@ export const EventDetails = () => {
   }
 
 
-  // Socal Media share
+  // Socal Media share icon 
 
   const shareUrl = `https://event-management-client.vercel.app/${singelEvent?.id}`
   const information = {
     image : singelEvent?.image,
     titele : singelEvent?.title,
   }
-// end
+
 
   return (
     <>
