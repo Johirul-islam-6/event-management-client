@@ -54,7 +54,7 @@ export const AllEvents = () => {
   const updateReceivedData = newData => {
     setReceivedSearchingData(newData);
   };
- 
+ // searching useEffect
    useEffect(  () =>{
       
       setLoding(true)

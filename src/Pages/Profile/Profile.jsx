@@ -2,12 +2,17 @@ import Cookies from "js-cookie"
 import { toast } from "react-toastify"
 
 
+
 export const Profile = () => {
 
     const userEmail = Cookies.get('userEmail')
 
+
+
   return (
-    // user profile
+    <>
+      
+    {/* // user profile */}
     <div className="row d-flex justify-content-center align-items-center py-5">
       <div className="col-lg-4">
         <div className="card mb-4">
@@ -29,5 +34,6 @@ export const Profile = () => {
 
 
     </div>
+    </>
   )
 }

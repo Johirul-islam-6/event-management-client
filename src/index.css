@@ -142,10 +142,10 @@
   color: #ED4A43;
 }
 .footer a .fab {
-  color: #ffffff !important;
+  color: #e8e7e7 !important;
 }
 .footer a .fab:hover {
-  color: #ED4A43;
+  color: #ED4A43 !important;
 }
 .footer .role {
   color: #0D1D31;

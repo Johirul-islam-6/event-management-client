@@ -39,12 +39,12 @@ export const EventDetails = () => {
   }, [id]);
 
  // <-----========== Get All Booking User request showing event booking member ==========------>
- const [eventbookingUser, seteventbookingUser] = useState()
+ const [eventbookingUser, setEventbookingUser] = useState()
    useEffect(() => {
     fetch(`https://event-managment-jade.vercel.app/api/v1/event-booking/${id}`)
       .then(response => response.json())
       .then(data => {
-        seteventbookingUser(data?.data); 
+        setEventbookingUser(data?.data); 
         // setLoding(false)
         
       })
