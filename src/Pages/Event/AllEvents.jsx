@@ -5,23 +5,24 @@ import { useEffect, useState } from "react";
 import { Loding } from "../../Components/Loding/Loding";
 import { Pagination } from "../../Components/Pagination/Pagination";
 import CalanderView from '../../Components/React_Calender/CalendarView'
+import { toast } from "react-toastify";
 
 
 export const AllEvents = () => {
  
+     // Loading state
+  const [loding, setLoding] = useState(true);
+   // pagination state bydefult value -1
+  const [receivedPaginationData, setReceivedPaginationData] = useState();
    // seargin input fild value resive state. 
   const [receivedSearchingData, setReceivedSearchingData] = useState();
-   // Loading starte
-  const [loding, setLoding] = useState(true);
 
-
-  //seargin, pagination query event data lisht.. 
+  //All Events store this state. 
   const [QueryEventData , setQueryEventData] = useState()
   
-  // ===================> Pagination Event Lisht Api request functionality start ==================>
 
-  // pagination state bydefult value -1
-  const [receivedPaginationData, setReceivedPaginationData] = useState(null);
+
+  // ===================> Pagination Event Lisht Api request functionality start ==================>
 
   //transfer the function send pagination.jsx page
   const updateReceivedPaginationData = newData => {
@@ -30,17 +31,23 @@ export const AllEvents = () => {
 
    useEffect(() => {
 
+   //condition pagination searchin data null
+   if(receivedSearchingData){
+    setLoding(false)
+    return  
+    }
+    //fetchin pagination 
     fetch(`https://event-managment-jade.vercel.app/api/v1/event/?page=${receivedPaginationData}&limit=4&sort=createdAt&sortOrder=desc`)
       .then(response => response.json())
       .then(data => {
         setQueryEventData(data)
-        // Update the events state with fetched data
         setLoding(false)
       })
       .catch(error => {
-        console.error("Error fetching events:", error);
+        console.log(error);
+        toast.error(error?.response?.data?.errorMessages[0]?.message)
       });
-  }, [receivedPaginationData]);
+  }, [receivedPaginationData,receivedSearchingData]);
 
   // <=================== Pagination Event Lisht Api request functionality end <==================
 
@@ -49,35 +56,49 @@ export const AllEvents = () => {
 
   // =============> Searching Query Event Lisht data functionality  start =================>
 
-
  //get input resive searching value in lastNavbar.jsx file
   const updateReceivedData = newData => {
     setReceivedSearchingData(newData);
   };
- 
+
+ // searching useEffect
    useEffect(  () =>{
       
       setLoding(true)
+      //condition
     if(!receivedSearchingData){
-      return console.log("NoT Searching...")
+      return 
     }
      
+     // if page number 1 < 2
+     if(receivedPaginationData > 1){
+      toast.warning( `Current Page is - ${receivedPaginationData} [ Change the page ! ]`)
+          setTimeout(() => {
+        toast.success('please select page - 1');
+      
+       }, 1000);
+     }
+
     //fetching 
      fetch(`https://event-managment-jade.vercel.app/api/v1/event/?searchTerm=${receivedSearchingData}&page=${receivedPaginationData}&limit=4`)
      .then(res => res.json())
      .then(data => {
       setQueryEventData(data)
       setLoding(false)
-     })
+     }).catch(error => {
+        console.log(error);
+        toast.error(error?.response?.data?.errorMessages[0]?.message)
+      });
      
 
-   },[receivedSearchingData]) // searching dependency
+   },[receivedSearchingData,receivedPaginationData]) // searching dependency
 
 
   // =============> Searching Query Event Lisht data functionality  End =================>
 
 
- //  =================> Modal Booking  RSVP  Attendance  functionality start  =============>
+
+ //  =================> Modal Event Booking  RSVP  Attendance  functionality start  =============>
 
  const [attendanceEvent, setAttendanceEvent] = useState();
  const [attendanceModal, setAttendanceModal] = useState(false)
@@ -98,10 +119,9 @@ export const AllEvents = () => {
 //  =================> Modal Booking  RSVP  Attendance  functionality start  =============>
 
 
-
   return (
     <>
-    {/* send up updateReceivedData() apply searchin data */}
+    {/* Top Searching component  */}
     <LastNavbar onDataUpdate={updateReceivedData}/>
 
      {/* //=============== Parents section start ================> */}
@@ -132,7 +152,7 @@ export const AllEvents = () => {
 {loding ? <><Loding/> </> : null}
 
  
- {/*---------Conditon base Event Not Found Data ----------> */}
+ {/*---------Conditon base Event Not Found  ----------> */}
 { 
   QueryEventData?.data?.length > 0 ? (
    
@@ -199,6 +219,7 @@ export const AllEvents = () => {
  </div>
 
    {/* <================ All Event Cards Design end  <==================  */}
+   
           </div>
 
 
@@ -207,7 +228,7 @@ export const AllEvents = () => {
 
 
 
-     {/* ------------> RSVP Modal Open Design -------- */}
+     {/* ------------> RSVP btn Insite Modal component Design -------- */}
 
      {
       attendanceModal ? <>
@@ -229,10 +250,7 @@ export const AllEvents = () => {
 
      </section>
 
-      {/* //=============== Parents section end ================> */}
-
-
-
+  
     
     </>
   )
